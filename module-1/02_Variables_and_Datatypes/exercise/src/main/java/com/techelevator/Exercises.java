@@ -323,63 +323,81 @@ public class Exercises {
         39. There are 100 cupcakes for 8 children to share. How much will each
         person get if they share the cupcakes equally?
         */
-
+		double cupcakes = 100;
+		double children = 8;
+		double cupcakesPerChild = cupcakes / children;
 
         /* Exercise 40
         40. She made 47 gingerbread cookies which she will distribute equally in
         tiny glass jars. If each jar is to contain six cookies, how many
         cookies will not be placed in a jar?
         */
-
+		int cookiesTotal = 47;
+		int cookiesPerJar = 6;
+		int cookiesNotFittingInJars = cookiesTotal % cookiesPerJar;
 
         /* Exercise 41
         41. She also prepared 59 croissants which she plans to give to her 8
         neighbors. If each neighbor received an equal number of croissants,
         how many will be left with Marian?
         */
-
+		int croissantsTotal = 59;
+		int neighbors = 8;
+		int leftoverCroissants = croissantsTotal % neighbors;
 
         /* Exercise 42
         42. Marian also baked oatmeal cookies for her classmates. If she can
         place 12 cookies on a tray at a time, how many trays will she need to
         prepare 276 oatmeal cookies at a time?
         */
-
+		int cookiesPerTray = 12;
+		int totalCookies = 276;
+		int traysNeeded = (totalCookies / cookiesPerTray);
 
         /* Exercise 43
         43. Marian’s friends were coming over that afternoon so she made 480
         bite-sized pretzels. If one serving is equal to 12 pretzels, how many
         servings of bite-sized pretzels was Marian able to prepare?
         */
-
+		int pretzels = 480;
+		int servingOfPretzels = 12;
+		int totalServings = pretzels / servingOfPretzels;
 
         /* Exercise 44
         44. Lastly, she baked 53 lemon cupcakes for the children living in the city
         orphanage. If two lemon cupcakes were left at home, how many
         boxes with 3 lemon cupcakes each were given away?
         */
-
+		int lemonCakesToDonate = 53;
+		int lemonCakesLeftAtHome = 2;
+		int boxesOfThreeDonated = (lemonCakesToDonate - lemonCakesLeftAtHome) / 3;
 
         /* Exercise 45
         45. Susie's mom prepared 74 carrot sticks for breakfast. If the carrots
         were served equally to 12 people, how many carrot sticks were left
         uneaten?
         */
-
+		int carrotSticks = 74;
+		int peopleEatingCarrots = 12;
+		int leftoverCarrots = carrotSticks % peopleEatingCarrots;
 
         /* Exercise 46
         46. Susie and her sister gathered all 98 of their teddy bears and placed
         them on the shelves in their bedroom. If every shelf can carry a
         maximum of 7 teddy bears, how many shelves will be filled?
         */
-
+		int totalTeddies = 98;
+		int teddiesPerShelf = 7;
+		int shelvesOfTeddies = totalTeddies / teddiesPerShelf;
 
         /* Exercise 47
         47. Susie’s mother collected all family pictures and wanted to place all of
         them in an album. If an album can contain 20 pictures, how many
         albums will she need if there are 480 pictures?
         */
-
+		int totalPhotos = 480;
+		int photosPerAlbum = 20;
+		int totalAlbums = totalPhotos / photosPerAlbum;
 
         /* Exercise 48
         48. Joe, Susie’s brother, collected all 94 trading cards scattered in his
@@ -387,26 +405,40 @@ public class Exercises {
         cards, how many boxes were filled and how many cards are there in
         the unfilled box?
         */
-
+		int tradingCards = 94;
+		int cardsPerBox = 8;
+		int fullBoxesOfCards = tradingCards / cardsPerBox;
+		int cardsInPartiallyFilledBox = tradingCards % cardsPerBox;
 
         /* Exercise 49
         49. Susie’s father repaired the bookshelves in the reading room. If he has
         210 books to be distributed equally on the 10 shelves he repaired,
         how many books will each shelf contain?
         */
-
+		int totalBooks = 210;
+		int totalShelves = 10;
+		int booksPerShelf = totalBooks / totalShelves;
 
         /* Exercise 50
         50. Cristina baked 17 croissants. If she planned to serve this equally to
         her seven guests, how many will each have?
         */
-
+		double totalCroissants = 17;
+		double guests = 7;
+		double croissantsPerGuest = totalCroissants / guests;
 
 	    /* Exercise 51
 	    51. Bill and Jill are house painters. Bill can paint a 12 x 14 room in 2.15 hours, while Jill averages
 	    1.90 hours. How long will it take the two painters working together to paint 5 12 x 14 rooms?
 	    Hint: Calculate the hourly rate for each painter, combine them, and then divide the total walls in feet by the combined hourly rate of the painters.
 	    */
+
+		double roomSquareFeet = 12 * 14;
+		double billRate = roomSquareFeet / 2.15;
+		double jillRate = roomSquareFeet / 1.90;
+		double rateTeamOverFiveRooms = (roomSquareFeet * 5) / (billRate + jillRate);
+
+
 
 
 	    /* Exercise 52
