@@ -72,7 +72,10 @@ public class Exercise05_AcceptPackage {
      */
     public boolean acceptPackage(int weightPounds, int lengthInches, int widthInches, int heightInches, boolean isSurchargePaid) {
         int cubicInches = (lengthInches * widthInches * heightInches);
-        isSurchargePaid = (lengthInches > MAX_DIMENSION_INCHES) || (widthInches > MAX_DIMENSION_INCHES) || (heightInches > MAX_DIMENSION_INCHES);
+//      isSurchargePaid = (lengthInches > MAX_DIMENSION_INCHES) || (widthInches > MAX_DIMENSION_INCHES) || (heightInches > MAX_DIMENSION_INCHES);
+        if ((lengthInches > MAX_DIMENSION_INCHES) || (widthInches > MAX_DIMENSION_INCHES) || (heightInches > MAX_DIMENSION_INCHES)) {
+            return isSurchargePaid;
+        }
         if (weightPounds <= MAX_WEIGHT_POUNDS) {
             return cubicInches < MAX_CUBIC_INCHES;
         }
