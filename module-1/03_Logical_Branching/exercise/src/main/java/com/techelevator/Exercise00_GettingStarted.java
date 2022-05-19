@@ -25,10 +25,6 @@ public class Exercise00_GettingStarted {
 
         boolean isAboveFreezing = highTemperatureF > FREEZING_TEMPERATURE_F;
 
-        if (precipitationExpected && isAboveFreezing) {
-            return true;
-        } else {
-            return false;
-        }
+        return precipitationExpected && isAboveFreezing;
     }
 }

@@ -32,10 +32,7 @@ public class Exercise07_StoreHours {
     isStoreOpen(22) ➔ false
      */
     public boolean isStoreOpen(int currentHour) {
-        if (currentHour >= 8 && currentHour < 17) {
-            return true;
-        }
-        return false;
+        return currentHour >= 8 && currentHour < 17;
     }
 
 
@@ -59,9 +56,7 @@ public class Exercise07_StoreHours {
      */
     public boolean isStoreOpen(int currentHour, char currentDay) {
         if (currentHour >= 8 && currentHour < 17)
-        if (currentDay == 'M' || currentDay == 'W' || currentDay == 'F') {
-            return true;
-        }
+            return currentDay == 'M' || currentDay == 'W' || currentDay == 'F';
         return false;
     }
 

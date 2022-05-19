@@ -52,8 +52,8 @@ public class Exercise02_BoardingGate {
     Note: A new row starts at every third element. For example, row one begins with index 0, row two begins with index 3, and so on.
 
     Examples:
-    getNumberOfFullRows([false, false, false, true, true, true]) → 1
-    getNumberOfFullRows([true, true, true, true, true, true]) → 2
+    getNumberOfFullRows([false, false, false, true, true, true]) → 1   ******** every 3 values (aka seats) is a row **********
+    getNumberOfFullRows([true, true, true,          true, true, true]) → 0
     getNumberOfFullRows([false, true, true, false, true, true]) → 0
      */
     public int getNumberOfFullRows(boolean[] seatingChart) {

@@ -24,9 +24,12 @@ public class Exercise03_ShippingTotal {
     public double calculateShippingTotal(int weightPounds) {
         if (weightPounds <= MAX_WEIGHT_POUNDS) {
             return (weightPounds * UP_TO_40_LB_RATE);
-        } else {
+        } else if (weightPounds > MAX_WEIGHT_POUNDS) {
             return ((weightPounds - MAX_WEIGHT_POUNDS) * OVER_40_LB_RATE) + (MAX_WEIGHT_POUNDS * UP_TO_40_LB_RATE);
         }
+
+
+        return 0;
     }
 
     /*
@@ -42,19 +45,23 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(45, true) ➔ 21.375
      */
     public double calculateShippingTotal(int weightPounds, boolean hasDiscount) {
-
-        if (weightPounds <= MAX_WEIGHT_POUNDS)
-        if (hasDiscount) {
-            return (weightPounds * UP_TO_40_LB_RATE * .90);
-        } else if (weightPounds <= MAX_WEIGHT_POUNDS)
-            if (hasDiscount) {
-            return (  ( ( (weightPounds - MAX_WEIGHT_POUNDS) * OVER_40_LB_RATE) * .9) + ((MAX_WEIGHT_POUNDS * UP_TO_40_LB_RATE) * .9));
-        }
+        double subTotal =0;
         if (weightPounds <= MAX_WEIGHT_POUNDS) {
-            return (weightPounds * UP_TO_40_LB_RATE);
-        } else {
-            return ((weightPounds - MAX_WEIGHT_POUNDS) * OVER_40_LB_RATE) + (MAX_WEIGHT_POUNDS * UP_TO_40_LB_RATE);
+            subTotal = (weightPounds * UP_TO_40_LB_RATE);
+
         }
+
+
+
+        else if (weightPounds > MAX_WEIGHT_POUNDS) {
+            subTotal = ((weightPounds - MAX_WEIGHT_POUNDS) * OVER_40_LB_RATE) + (MAX_WEIGHT_POUNDS * UP_TO_40_LB_RATE);
+
+        }
+
+        if (hasDiscount == true) {
+            subTotal *= .9;
+    } return subTotal;
+
     }
 
     /*
@@ -69,6 +76,19 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(45, 0.2) ➔ 19.0
      */
     public double calculateShippingTotal(int weightPounds, double discountPercentage) {
-        return 0;
+        double subTotal =0;
+        if (weightPounds <= MAX_WEIGHT_POUNDS) {
+            subTotal = (weightPounds * UP_TO_40_LB_RATE);
+
+        }
+
+        else if (weightPounds > MAX_WEIGHT_POUNDS) {
+            subTotal = ((weightPounds - MAX_WEIGHT_POUNDS) * OVER_40_LB_RATE) + (MAX_WEIGHT_POUNDS * UP_TO_40_LB_RATE);
+
+        }
+
+        subTotal = subTotal - (subTotal*discountPercentage);
+        return subTotal;
+
     }
 }

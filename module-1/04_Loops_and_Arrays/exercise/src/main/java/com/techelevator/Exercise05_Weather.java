@@ -31,7 +31,7 @@ public class Exercise05_Weather {
     /*
     GaleForce also needs to determine the hottest day when given an upcoming forecast.
 
-    Given an array of high temperatures, determine the hottest day.
+    Given an array of high temperatures, determine the hottest day (aka the highest/hottest temperature  --  they want the max value in the array).
 
     Note: The array of high temperatures is guaranteed to have at least one
     element.
