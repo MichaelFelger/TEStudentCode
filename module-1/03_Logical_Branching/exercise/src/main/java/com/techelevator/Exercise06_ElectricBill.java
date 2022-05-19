@@ -47,11 +47,16 @@ public class Exercise06_ElectricBill {
     public double calculateElectricBill(double unitsUsed, boolean hasRenewableEnergy) {
         double premiumUnits = unitsUsed - 100;
         double regularUnits = unitsUsed - premiumUnits;
+        double subTotal = 0;
         if (unitsUsed <= 100) {
-            return unitsUsed * BASE_RATE;
+            subTotal = unitsUsed * BASE_RATE;
         } else {
-            return (premiumUnits * EXCESS_RATE) + (regularUnits * BASE_RATE);
+            subTotal = (premiumUnits * EXCESS_RATE) + (regularUnits * BASE_RATE);
         }
+        if (hasRenewableEnergy) {
+            subTotal = subTotal*.95;
+        }
+        return subTotal;
     }
 
     /*
