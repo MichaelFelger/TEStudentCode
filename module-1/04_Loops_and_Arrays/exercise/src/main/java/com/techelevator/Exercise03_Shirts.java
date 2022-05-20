@@ -65,6 +65,14 @@ public class Exercise03_Shirts {
     placeRequest([]) → false
      */
     public boolean placeRequest(char[] order) {
+        int smalls = 0;
+        for (int index = 0; index < order.length ; index ++) {
+            if (order[index] == SMALL_TSHIRT) {
+                smalls++;
+            }
+        } if (smalls > 0) {
+            return true;
+        }
         return false; 
     }
 }
