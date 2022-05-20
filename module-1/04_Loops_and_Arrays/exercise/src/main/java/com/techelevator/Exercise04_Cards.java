@@ -25,7 +25,8 @@ public class Exercise04_Cards {
     getFirstCard(["K-C", "Q-D", "J-H", "10-S", "Q-C"]) → "K-C"
     */
     public String getFirstCard(String[] hand) {
-        return "";
+        String firstCard = hand[0];
+        return firstCard;
     }
 
     /*
@@ -41,8 +42,18 @@ public class Exercise04_Cards {
     discardFirstCard(["1-C", "1-D", "1-H", "1-S", "2-C"]) → ["1-D", "1-H", "1-S", "2-C"]
     discardFirstCard(["K-C", "Q-D", "J-H", "10-S", "Q-C"]) → ["Q-D", "J-H", "10-S", "Q-C"]
      */
+
+    // I found some help online for this, but I can explain the logic
+    // https://stackabuse.com/remove-element-from-an-array-in-java/#using-two-arrays
+
     public String[] discardFirstCard(String[] hand) {
-        return new String[] {};
+        String[] newHand = new String [hand.length - 1];
+        for (int i = 0, j = 0; i < hand.length; i++) {
+            if (i != 0) {
+                newHand[j++] = hand[i];
+            }
+        }
+        return newHand;
     }
 
     /*
