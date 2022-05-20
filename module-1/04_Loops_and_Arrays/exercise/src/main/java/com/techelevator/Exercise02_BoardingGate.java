@@ -24,10 +24,12 @@ public class Exercise02_BoardingGate {
     generateSeatingChart(2) → [true, true]
      */
     public boolean[] generateSeatingChart(int numberOfSeats) {
-        for (int seat = 0; seat < numberOfSeats -1 ; seat++) {
-            
+        boolean[] seat = new boolean[numberOfSeats];
+
+        for (int index = 0; index < numberOfSeats ; index++) {
+            seat[index] = true;
         }
-        return new boolean [] {}; }
+        return seat; }
 
     /*
     Once passengers begin boarding the plane, gate attendants need a way to determine how many available
@@ -43,7 +45,13 @@ public class Exercise02_BoardingGate {
     getAvailableSeatCount([]) → 0
      */
     public int getAvailableSeatCount(boolean[] seatingChart) {
-        return 0;
+        int availableSeats = 0;
+        for (int seatNumber = 0; seatNumber < seatingChart.length ; seatNumber++) {
+            if (seatingChart[seatNumber] == true) {
+                availableSeats++;
+            }
+        } return availableSeats;
+
     }
 
     /*
@@ -59,7 +67,13 @@ public class Exercise02_BoardingGate {
     getNumberOfFullRows([false, true, true, false, true, true]) → 0
      */
     public int getNumberOfFullRows(boolean[] seatingChart) {
-        return 0;
+        int fullRows = 0;
+        for (int seatNumber = 0; seatNumber < seatingChart.length; seatNumber += 3) {
+            if (seatingChart[seatNumber] == false && seatingChart[seatNumber + 1] == false && seatingChart[seatNumber + 2] == false) {
+                fullRows++;
+            }
+        }
+        return fullRows;
     }
 
 }
