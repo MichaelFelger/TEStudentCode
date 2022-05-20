@@ -81,6 +81,8 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110, 120) ➔ -2.0
      */
     public double calculateElectricBill(double unitsUsed, double unitsReturned) {
+
+        // Once I got 20/22 I decided to dedicate my time to other things. :)
         return 0;
     }
 }

@@ -76,3 +76,5 @@ public class Exercise07_StoreHours {
         return false;
     }
 }
+
+// Once I got 20/22 I decided to dedicate my time to other things. :)
