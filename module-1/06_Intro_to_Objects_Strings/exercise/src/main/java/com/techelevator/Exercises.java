@@ -286,8 +286,19 @@ public class Exercises {
 	 stringTimes("Hi", 1) → "Hi"
 	 */
 	public String stringTimes(String str, int n) {
-		return null;
+//		return str.repeat(n);
+
+		// I tried to run this is as a for loop running through an array of n indexes and concatenating the results,
+		// but I kept getting too many or too few copies by 1
+
+		// nevermind, got some help from Conor
+
+		String stringTimes = "";
+		for (int i = 0; (i < n); i++) {
+			stringTimes = stringTimes.concat(str);
+		} return stringTimes;
 	}
+
 
 	/*
 	 Given a string and a non-negative int n, we'll say that the front of the string is the first 3 chars, or
@@ -297,7 +308,13 @@ public class Exercises {
 	 frontTimes("Abc", 3) → "AbcAbcAbc"
 	 */
 	public String frontTimes(String str, int n) {
-		return null;
+		String fronts;
+		if (str.length() < 3) {
+			fronts = str.substring(0,str.length());
+			return fronts.repeat(n);
+		} else
+		fronts = str.substring(0,3);
+		return fronts.repeat(n);
 	}
 
 	/*
@@ -307,7 +324,10 @@ public class Exercises {
 	 countXX("xxxx") →
 	 */
 	public int countXX(String str) {
-		return 0;
+		int indexXX = str.indexOf("xx");
+		while (str.length() > indexXX) {
+			indexXX++;
+		} return indexXX;
 	}
 
 	/*
@@ -317,6 +337,13 @@ public class Exercises {
 	 doubleX("xxxxx") → true
 	 */
 	public boolean doubleX(String str) {
+		int firstX = str.indexOf("x");
+		if (firstX >= str.length()-1) {
+			return false;
+		}
+		if (str.substring(firstX+1, firstX+2).equals("x")) {
+			return true;
+		}
 		return false;
 	}
 
