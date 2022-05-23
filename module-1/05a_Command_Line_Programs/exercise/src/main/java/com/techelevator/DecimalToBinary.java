@@ -12,7 +12,7 @@ public class DecimalToBinary {
 		String input = scanner.nextLine();
 		String[] numbersInput = input.split(" "); // INPUTS ARE STILL STRINGS - WILL HAVE TO PARSE INT TO DO MATH
 
-		/*trying to creat a new array of ints
+		/*trying to create a new array of ints
 		int arraySize = numbersInput.length;
 		int[] arrayOfIntegers = new int [arraySize];
 		for (int i = 0; i < arraySize; i++ ) {
