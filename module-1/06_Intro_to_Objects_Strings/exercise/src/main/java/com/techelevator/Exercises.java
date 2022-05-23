@@ -228,7 +228,14 @@ public class Exercises {
 	 twoChar("java", 3) → "ja"
 	 */
 	public String twoChar(String str, int index) {
-		return null;
+		if (index < 1) {
+			return str.substring(0, 2);
+		} else if (index > str.length()) {
+			return str.substring(0, 2);
+		} else if (index +2 > str.length()) {
+			return str.substring(0, 2);
+		} else return str.substring(index, index + 2);
+
 	}
 
 	/*
@@ -239,7 +246,8 @@ public class Exercises {
 	 middleThree("solving") → "lvi"
 	 */
 	public String middleThree(String str) {
-		return null;
+		int middle = (str.length()+1) / 2;
+		return str.substring(middle -2, middle +1);
 	}
 
 	/*
@@ -251,8 +259,25 @@ public class Exercises {
 	 hasBad("xxbadxx") → false
 	 */
 	public boolean hasBad(String str) {
-		return false;
+
+		// I know this is ugly code, but it will work for letters other than x, too :)
+		// I might have made this harder than it was supposed to be :(
+
+		if (str.equals("bad")) {
+			return true;
+		}
+		if (str.length() <= 3) {
+			return false;
+		}
+		else if (str.substring(0,3).contains("bad")) {
+			return true;
+		}
+		else if (str.substring(1,4).contains("bad")) {
+			return true;
+		}
+		else return false;
 	}
+
 
 	/*
 	 Given a string and a non-negative int n, return a larger string that is n copies of the original string.
