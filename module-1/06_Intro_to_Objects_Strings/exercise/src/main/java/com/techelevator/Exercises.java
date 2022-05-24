@@ -322,9 +322,12 @@ public class Exercises {
 	 countXX("xxxx") →
 	 */
 	public int countXX(String str) {
-		int indexXX = str.indexOf("xx");
-		while (str.length() > indexXX) {
-			indexXX++;
+		int indexXX = 0;
+		for (int i = 0; i < str.length()-1; i++) {
+			if (str.substring(i, i + 2).equals("xx")) {
+				indexXX++;
+		}
+
 		}
 		return indexXX;
 	}
@@ -403,7 +406,11 @@ public class Exercises {
 	 stringX("xabxxxcdx") → "xabcdx"
 	 */
 	public String stringX(String str) {
-		return null;
+		String byeMiddleX = "";
+		for (int i = 1; i < str.length()-1; i++) {
+			byeMiddleX = "";
+		}
+		return byeMiddleX;
 	}
 
 	/*
@@ -413,7 +420,14 @@ public class Exercises {
 	 altPairs("CodingHorror") → "Congrr"
 	 */
 	public String altPairs(String str) {
-		return null;
+		String kittyString = "";
+		for (int i = 0; i < str.length(); i += 4) {
+			kittyString += str.subSequence(i, i+1);
+			if (i < str.length()-1) {
+				kittyString += str.subSequence(i+1, i+2);
+			}
+		}
+		return kittyString;
 	}
 
 	/*
@@ -424,7 +438,8 @@ public class Exercises {
 	 stringYak("yak123ya") → "123ya"
 	 */
 	public String stringYak(String str) {
-		return null;
+		String noYaks = str.replaceAll("yak", "");
+		return noYaks;
 	}
 
 }

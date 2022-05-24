@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Exercises {
@@ -16,7 +17,11 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		List<String> listOfStrings = new ArrayList<String>();
+		for (int i = 0; i < stringArray.length; i++) {
+			listOfStrings.add(stringArray[i]);
+		}
+		return listOfStrings;
 	}
 
 	/*
@@ -26,7 +31,11 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		String[] myArray = stringList.toArray(new String[0]);
+		for (int index = 0; index < myArray.length; index++) {
+
+		}
+		return myArray;
 	}
 
 	/*
@@ -37,7 +46,14 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> listOfStrings = new ArrayList<String>();
+		for (int i = 0; i < stringArray.length; i++) {
+			if (stringArray[i].length() != 4) {
+				listOfStrings.add(stringArray[i]);
+			}
+
+		}
+		return listOfStrings;
 	}
 
 	/*
@@ -47,7 +63,12 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		List<Double> listOfDoubles = new ArrayList<>();
+		for (int i = 0; i < intArray.length; i++) {
+			Double myVar = Double.valueOf(intArray[i]);
+			listOfDoubles.add(myVar/2);
+		}
+		return listOfDoubles;
 	}
 
 	/*
@@ -57,7 +78,13 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 81238
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		int myVar = 0;
+		for (int i = 0; i < integerList.size(); i++) {
+			if (integerList.get(i) >= myVar) {
+				myVar = integerList.get(i);
+			}
+		}
+		return myVar;
 	}
 
 	/*
@@ -67,7 +94,13 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> listOfInts = new ArrayList<>();
+		for (int i = 0; i < integerArray.length; i++) {
+			if (integerArray[i] % 2 != 0) {
+				listOfInts.add(integerArray[i]);
+			}
+		}
+		return listOfInts;
 	}
 
 	/*
@@ -78,7 +111,13 @@ public class Exercises {
 	 foundIntTwice( [9, 9, 44, 2, 88, 9], 9) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
-		return false;
+		int myVar = 0;
+		for (int i = 0; i < integerList.size(); i++) {
+			if (integerList.get(i) == intToFind) {
+				myVar++;
+			}
+		}
+		return myVar >= 2;
 	}
 
 	/*
@@ -94,7 +133,22 @@ public class Exercises {
 	HINT: To convert an Integer x to a String, you can use x.toString() in your code. For example, if x = 1, then x.toString() returns "1."
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		List<String> biggusListus = new ArrayList<>();
+		for (int i = 0; i < integerArray.length; i++) {
+				// if not multiple of 3 or 5 .add to biggus listus
+			if ((integerArray[i] % 3 != 0) && (integerArray[i] % 5 != 0)) {
+				biggusListus.add(integerArray[i].toString());
+//				biggusListus.add(String.valueOf(i));
+			} else if ((integerArray[i] % 3 == 0) && (integerArray[i] % 5 == 0)) {
+				biggusListus.add("FizzBuzz");
+			} else if (integerArray[i] % 3 == 0) {
+				biggusListus.add("Fizz");
+			} else if (integerArray[i] % 5 == 0) {
+				biggusListus.add("Buzz");
+			}
+
+		}
+		return biggusListus;
 	}
 
 	/*
@@ -105,7 +159,22 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+		List<Integer> interLeavedList = new ArrayList<>();
+		Iterator<Integer> iterOne = listOne.iterator();
+		Iterator<Integer> iterTwo = listTwo.iterator();
+		while((iterOne.hasNext()) && (iterTwo.hasNext())){
+			interLeavedList.add(iterOne.next());
+			interLeavedList.add(iterTwo.next());
+			// still need to figure out how to add on the end of the longer list
+			// other idea is
+			// compare list sizes to determine and define longer
+			// for < length
+			// if
+			// if
+		}
+
+
+		return interLeavedList;
 	}
 
 }
