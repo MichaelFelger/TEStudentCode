@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Exercises {
@@ -34,7 +35,27 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		Map<String, String> groupsOfAnimalsMap = new HashMap<>();
+
+		groupsOfAnimalsMap.put("rhino", "Crash");
+		groupsOfAnimalsMap.put("giraffe", "Tower");
+		groupsOfAnimalsMap.put("elephant", "Herd");
+		groupsOfAnimalsMap.put("lion","Pride");
+		groupsOfAnimalsMap.put("crow","Murder");
+		groupsOfAnimalsMap.put("pigeon","Kit");
+		groupsOfAnimalsMap.put("flamingo","Pat");
+		groupsOfAnimalsMap.put("deer","Herd");
+		groupsOfAnimalsMap.put("dog","Pack");
+		groupsOfAnimalsMap.put("crocodile","Float");
+
+		if (animalName == null) {
+			return "unknown";
+		}
+		else if (groupsOfAnimalsMap.containsKey(animalName.toLowerCase())) {
+			return groupsOfAnimalsMap.get(animalName.toLowerCase());
+		} else {
+			return "unknown";
+		}
 	}
 
 	/*
@@ -60,9 +81,21 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
-		return -1.0;
+		Map<String, Double> discountMap = new HashMap<>();
+		discountMap.put("KITCHEN4001", 0.20);
+		discountMap.put("GARAGE1070", 0.15);
+		discountMap.put("LIVINGROOM", 0.10);
+		discountMap.put("KITCHEN6073", 0.40);
+		discountMap.put("BEDROOM3434", 0.60);
+		discountMap.put("BATH0073", 0.15);
+		if (itemNumber == null) {
+			return 0.00;
+		} else if (discountMap.containsKey(itemNumber.toUpperCase())) {
+			return discountMap.get(itemNumber.toUpperCase());
+		} else {
+			return 0.00;
+		}
 	}
-
 	/*
 	 * Modify and return the given Map as follows: if "Peter" has more than 0 money, transfer half of it to "Paul",
 	 * but only if Paul has less than $10s.
@@ -74,7 +107,17 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-		return null;
+		if ((peterPaul.get("Paul") >= 1000) && peterPaul.get("Peter") > 0) {
+			return peterPaul;
+		} else {
+			int donation = (peterPaul.get("Peter") / 2);
+			int paulGettinPaid = peterPaul.get("Paul") + donation;
+			int peterGettinRobbed = peterPaul.get("Peter") - donation;
+			peterPaul.put("Peter", peterGettinRobbed);
+			peterPaul.put("Paul", paulGettinPaid);
+			return peterPaul;
+
+		}
 	}
 
 	/*
@@ -87,7 +130,22 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-		return null;
+		if ((peterPaul.get("Peter") < 5000) || peterPaul.get("Paul") < 10000) {
+			return peterPaul;
+		} else {
+			int peterQuarter = (peterPaul.get("Peter") / 4);
+			int paulQuarter = (peterPaul.get("Paul") / 4);
+
+			int paulLeftOver = peterPaul.get("Paul") - paulQuarter;
+			int peterLeftOver = peterPaul.get("Peter") - peterQuarter;
+
+			peterPaul.put("Peter", peterLeftOver);
+			peterPaul.put("Paul", paulLeftOver);
+			peterPaul.put("PeterPaulPartnership", paulQuarter+peterQuarter);
+			return peterPaul;
+
+		}
+
 	}
 
 	/*
@@ -99,7 +157,13 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		return null;
+		Map<String, String> myMap = new HashMap<>();
+		for (String var : words)
+		{
+			myMap.put(var.substring(0,1), var.substring(var.length()-1));
+		}
+
+		return myMap;
 	}
 
 	/*
@@ -115,7 +179,15 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		Map<String, Integer> myMap = new HashMap<>();
+		for (int i = 0; i < words.length; i++) {
+			if (myMap.containsKey(words[i])==false) {
+				myMap.put(words[i], 1);
+			} else {
+				myMap.put(words[i], myMap.get(words[i])+1);
+			}
+		}
+		return myMap;
 	}
 
 	/*
@@ -158,6 +230,18 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
+		Map<String, Integer> newWarehouse = new HashMap<>();
+		for (Map.Entry<String, Integer> var : mainWarehouse.entrySet()) {
+			newWarehouse.get()
+
+		}
+
+		// foreach .entrySet loop to copy everything from map 1 into newMap
+		// for loop to check keys in map 2
+				// if map 2 keys don't
+				// put new and values
+					// else if key exists add new values to existing values
+
 		return null;
 	}
 

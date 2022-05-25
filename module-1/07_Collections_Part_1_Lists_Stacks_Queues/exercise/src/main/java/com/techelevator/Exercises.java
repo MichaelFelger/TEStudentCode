@@ -160,21 +160,35 @@ public class Exercises {
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
 		List<Integer> interLeavedList = new ArrayList<>();
-		Iterator<Integer> iterOne = listOne.iterator();
-		Iterator<Integer> iterTwo = listTwo.iterator();
-		while((iterOne.hasNext()) && (iterTwo.hasNext())){
-			interLeavedList.add(iterOne.next());
-			interLeavedList.add(iterTwo.next());
-			// still need to figure out how to add on the end of the longer list
-			// other idea is
-			// compare list sizes to determine and define longer
-			// for < length
-			// if
-			// if
+		int shortListLength = 0;
+		if (listOne.size() < listTwo.size()) {
+			shortListLength = listOne.size();
+		} else {
+			shortListLength = listTwo.size();
+		}
+		for (int i = 0; i < shortListLength; i++) {
+			interLeavedList.add(listOne.get(i));
+			interLeavedList.add(listTwo.get(i));
+		}
+		if (listOne.size() == listTwo.size()){
+			return interLeavedList;
 		}
 
-
+		int longerListLength = 0;
+		if (listOne.size() > listTwo.size()) {
+			longerListLength = listOne.size();
+		} else {
+			longerListLength = listTwo.size();
+		}
+		for (int j = shortListLength; j < longerListLength; j++) {
+			if (listOne.size() == longerListLength) {
+			interLeavedList.add(listOne.get(j));
+		} else {
+				interLeavedList.add(listTwo.get(j));
+			}
+			}
 		return interLeavedList;
-	}
+	}   // DEFINITELY had some help from classmates on this one, but not the internet!
+		// I was having trouble figuring out how to correctly scope the difference in length in the lists
 
 }
