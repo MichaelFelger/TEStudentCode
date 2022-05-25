@@ -382,7 +382,7 @@ public class Exercises {
 			movingIndex++;
 			return stringSplosion;
 		}
-		// consider decrement and using while loop
+		// consider decrement and using while loop - again didn't ahve time to finish
 
 		return null;
 	}
@@ -396,7 +396,7 @@ public class Exercises {
 	 */
 	public int last2(String str) {
 		return 0;
-	}
+	} // decided to spend time working on other stuff
 
 	/*
 	 Given a string, return a version where all the "x" have been removed. Except an "x" at the very start or end
@@ -411,7 +411,7 @@ public class Exercises {
 			byeMiddleX = "";
 		}
 		return byeMiddleX;
-	}
+	} // ran out of time here
 
 	/*
 	 Given a string, return a string made of the chars at indexes 0,1, 4,5, 8,9 ... so "kittens" yields "kien".
