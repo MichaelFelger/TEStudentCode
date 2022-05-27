@@ -202,7 +202,15 @@ public class Exercises {
 	 *
 	 */
 	public Map<Integer, Integer> integerCount(int[] ints) {
-		return null;
+		Map<Integer, Integer> myMap =  new HashMap<>();
+		for (int i = 0; i < ints.length; i++) {
+			if (myMap.containsKey(ints[i])==false) {
+				myMap.put(ints[i], 1);
+			} else {
+				myMap.put(ints[i], myMap.get(ints[i])+1);
+			}
+		}
+		return myMap;
 	}
 
 	/*
@@ -215,7 +223,15 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
-		return null;
+		Map<String, Boolean> myMap = new HashMap<>();
+		for (int i = 0; i < words.length; i++) {
+			if (myMap.containsKey(words[i])==false) {
+				myMap.put(words[i], false);
+			} else {
+				myMap.put(words[i], true);
+			}
+		}
+		return myMap;
 	}
 
 	/*
@@ -231,18 +247,20 @@ public class Exercises {
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
 		Map<String, Integer> newWarehouse = new HashMap<>();
-		for (Map.Entry<String, Integer> var : mainWarehouse.entrySet()) {
-			newWarehouse.get()
 
+		for (String key : mainWarehouse.keySet()) {
+			if (remoteWarehouse.containsKey(key)) {
+				newWarehouse.put(key, (mainWarehouse.get(key)+remoteWarehouse.get(key)));
+			} else {
+				newWarehouse.put(key, mainWarehouse.get(key));
+			}
 		}
+		for (String remoteKey : remoteWarehouse.keySet()) {
+			if (!newWarehouse.containsKey(remoteKey)) {
+				newWarehouse.put(remoteKey, remoteWarehouse.get(remoteKey));
+			}
+		} return newWarehouse ;
 
-		// foreach .entrySet loop to copy everything from map 1 into newMap
-		// for loop to check keys in map 2
-				// if map 2 keys don't
-				// put new and values
-					// else if key exists add new values to existing values
-
-		return null;
 	}
 
 	/*
@@ -263,5 +281,7 @@ public class Exercises {
 	public Map<String, Integer> last2Revisited(String[] words) {
 		return null;
 	}
+
+	// time management
 
 }
