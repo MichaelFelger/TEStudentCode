@@ -25,7 +25,7 @@ public class ShoppingCart {
 	public String receipt() {
 	    String receipt = "\nReceipt\n";
 	    for (Book book : booksToBuy) {
-	        receipt += book.bookInfo();
+	        receipt += book;
 	        receipt += "\n";
 	    }
 
