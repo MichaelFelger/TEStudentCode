@@ -3,7 +3,8 @@ package com.techelevator;
 public class SavingsAccount extends BankAccount {
 
     public static int serviceCharge = 2;
-    public int theBalance = getBalance();
+    public static int minimumBalance = 150;
+//    public int theBalance = getBalance();
 
     //constructors
     public SavingsAccount(String accountHolderName, String accountNumber) {
@@ -15,12 +16,12 @@ public class SavingsAccount extends BankAccount {
 
     @Override
     public int withdraw (int amountToWithdraw) {
-        if ((theBalance - amountToWithdraw) >= 150) {
+        if ((getBalance() - amountToWithdraw) >= minimumBalance) {
             return super.withdraw(amountToWithdraw);
-        } else if (theBalance - amountToWithdraw >= 2) {
+        } else if (getBalance() - amountToWithdraw >= serviceCharge) {
             return super.withdraw(amountToWithdraw + serviceCharge);
         } else {
-            return theBalance;
+            return getBalance();
         }
     }
 }
