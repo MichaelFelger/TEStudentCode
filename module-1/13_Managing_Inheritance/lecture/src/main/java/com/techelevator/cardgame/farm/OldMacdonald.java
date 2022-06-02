@@ -1,10 +1,19 @@
-package com.techelevator.farm;
+package com.techelevator.cardgame.farm;
 
 public class OldMacdonald {
 	public static void main(String[] args) {
 
+		Cow cow = new Cow();
+		cow.sleep();
+		Pig pig = new Pig();
+		pig.sleep();
+		Cat cat = new Cat();
+		cat.sleep();
+
+
+
 		Singable[] singables =
-				new Singable[] {new Cow(), new Chicken(), new Pig(), new Tractor()};
+				new Singable[] {cow, new Chicken(), pig, new Tractor(), cat};
 
 		for (Singable singable : singables) {
 			String name = singable.getName();

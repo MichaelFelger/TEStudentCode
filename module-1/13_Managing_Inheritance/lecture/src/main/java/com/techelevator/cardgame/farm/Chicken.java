@@ -1,4 +1,4 @@
-package com.techelevator.farm;
+package com.techelevator.cardgame.farm;
 
 public class Chicken extends FarmAnimal {
 
@@ -8,6 +8,10 @@ public class Chicken extends FarmAnimal {
 
 	public void layEgg() {
 		System.out.println("Chicken laid an egg!");
+	}
+
+	public String eat() {
+		return "corn";
 	}
 
 }

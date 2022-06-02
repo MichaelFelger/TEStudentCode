@@ -1,4 +1,4 @@
-package com.techelevator.farm;
+package com.techelevator.cardgame.farm;
 
 public class Tractor implements Singable {
 

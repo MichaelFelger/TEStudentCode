@@ -1,4 +1,4 @@
-package com.techelevator.farm;
+package com.techelevator.cardgame.farm;
 
 import java.math.BigDecimal;
 
