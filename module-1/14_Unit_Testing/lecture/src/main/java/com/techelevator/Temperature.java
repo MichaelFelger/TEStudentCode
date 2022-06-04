@@ -11,7 +11,7 @@ public class Temperature {
     hottestDay([55]) → 55
     */
     public int hottestDay(int[] dailyHighs) {
-        int highestTemperature = 0;
+        int highestTemperature = dailyHighs[0];
         for (int dailyHigh : dailyHighs) {
             if (dailyHigh > highestTemperature) {
                 highestTemperature = dailyHigh;
