@@ -9,6 +9,7 @@ public class BankCustomer {
     private String address;
     private String phoneNumber;
     private List<Accountable> accounts = new ArrayList<>();
+    private final int VIP_MINIMUM_NET_WORTH = 25000;
 
     //getters
     public String getName() {
@@ -51,7 +52,7 @@ public class BankCustomer {
         int netWorth = 0;
         for (Accountable account : accounts) {
             netWorth += account.getBalance();
-        } return netWorth >= 25000;
+        } return netWorth >= VIP_MINIMUM_NET_WORTH;
     }
 
 

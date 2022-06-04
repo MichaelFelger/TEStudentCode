@@ -1,6 +1,9 @@
 package com.techelevator;
 
 public class SavingsAccount extends BankAccount {
+    private final int MIN_BALANCE = 100;
+    private final int WITHDRAW_FEE = 2;
+
 
     public SavingsAccount(String accountHolder, String accountNumber, int balance) {
         super(accountHolder, accountNumber, balance);
@@ -16,8 +19,8 @@ public class SavingsAccount extends BankAccount {
         if (getBalance() - amountToWithdraw >= 2) {
             super.withdraw(amountToWithdraw);
             // Assess $2 fee if it goes below $150
-            if (getBalance() < 150) {
-                super.withdraw(2);
+            if (getBalance() < MIN_BALANCE) {
+                super.withdraw(WITHDRAW_FEE);
             }
         }
         return getBalance();
