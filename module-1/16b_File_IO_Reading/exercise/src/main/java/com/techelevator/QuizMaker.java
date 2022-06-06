@@ -2,9 +2,12 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class QuizMaker {
+List<String> list = new ArrayList<>();
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -18,8 +21,23 @@ public class QuizMaker {
         int totalNumberOfQuestions = 0;
         while (fileInput.hasNextLine()) {
             totalNumberOfQuestions++;
+            String line = fileInput.nextLine();
+            String[] lineArray = line.split("\\|");
+
+            // loop through array
+            // add to lists by index
+            // questions list [0]
+            // responses list [rest of indexes]
+            // correctAnswer list [index string.endswith*]
+            // line by line, feed this into a Question constructor (String question, String responses (maybe in array?), String answer)
+            
+
+
+
+
+
         }
-        
+
 
 
     }
