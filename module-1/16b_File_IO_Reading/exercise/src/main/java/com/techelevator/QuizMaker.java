@@ -27,7 +27,7 @@ List<String> list = new ArrayList<>();
             String line = fileInput.nextLine();
             String[] lineArray = line.split("\\|");
             for (int i = 0; i < lineArray.length; i++) {
-                questionList.add(lineArray[i]);
+             //   questionList.add(lineArray[i]);
 
             }
 

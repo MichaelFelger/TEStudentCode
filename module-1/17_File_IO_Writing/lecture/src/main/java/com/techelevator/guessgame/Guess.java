@@ -1,11 +1,10 @@
-package com.techelevator;
+package com.techelevator.guessgame;
 
 import java.util.Scanner;
 
 public class Guess {
     public static void main(String[] args) {
 
-        int secretNumber = (int)(Math.random() * 100.0);
 
         Scanner scanner = new Scanner(System.in);
 
