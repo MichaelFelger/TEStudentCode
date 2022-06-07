@@ -36,26 +36,34 @@ public class BookConverter {
         /*
         Step 2: Open a file for writing the converted text into it
          */
-        try (Scanner fileInput = new Scanner(bookFile)) {
-            // Loop until the end of file is reached
-            while (fileInput.hasNextLine()) {
-                // Read the next line into 'lineOfText'
-                String lineOfText = fileInput.nextLine();
-                lineCount++;
+        // Create a File object for the output file
+        File convertedFile = getConvertedFile(bookFile);
+// Open both the input and output files.
+        try (Scanner fileInput = new Scanner(bookFile);
+             PrintWriter writer = new PrintWriter(convertedFile)) {
 
-                // Print the file to the user
-                System.out.println(lineOfText);
+
+            try (Scanner fileInput = new Scanner(bookFile)) {
+                // Loop until the end of file is reached
+                while (fileInput.hasNextLine()) {
+                    // Read the next line into 'lineOfText'
+                    String lineOfText = fileInput.nextLine();
+                    lineCount++;
+
+
+                    // Print the file to the user
+                    System.out.println(lineOfText);
+                }
+            } catch (FileNotFoundException e) {
+                // Could not find the file at the specified path.
+                System.out.println("The file was not found: " + bookFile.getAbsolutePath());
+                return;
             }
-        } catch (FileNotFoundException e) {
-            // Could not find the file at the specified path.
-            System.out.println("The file was not found: " + bookFile.getAbsolutePath());
-            return;
-        }
 
-        // Tell the user what happened.
-        String message = "Displayed " + lineCount +
-                " lines of file " + bookFile.getName();
-        System.out.println(message);
+            // Tell the user what happened.
+            String message = "Displayed " + lineCount +
+                    " lines of file " + bookFile.getName();
+            System.out.println(message);
 
         /*
         Step 3:
@@ -63,6 +71,7 @@ public class BookConverter {
         throughout history. If the file doesn't exist it will be created. If it already exists, its
         contents will be preserved, and the lines written here will be appended to what was already there.
          */
+        }
 
     }
 
