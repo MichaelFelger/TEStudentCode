@@ -7,31 +7,29 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QuizMaker {
-List<String> list = new ArrayList<>();
+    static List<String> questionList = new ArrayList<>();
+    List<String> responsesList = new ArrayList<>();
+    static List<String> answerList = new ArrayList<>();
 
 
     public static void main(String[] args) throws FileNotFoundException {
 
         Scanner userInput = new Scanner(System.in);
-        System.out.print("What is the fully qualified name of the file that should be searched? ");
+        System.out.println("What is the fully qualified name of the file that should be searched? ");
         String filePath = userInput.nextLine();
         File questionsFile = new File(filePath);
 
-
-        // this should be a list of questions
-        List<QuizQuestion> questionList = new ArrayList<>();
         Scanner fileInput = new Scanner(questionsFile);
-        int totalNumberOfQuestions = 0;
-        while (fileInput.hasNextLine()) {
-            totalNumberOfQuestions++;
-            String line = fileInput.nextLine();
-            String[] lineArray = line.split("\\|");
-            for (int i = 0; i < lineArray.length; i++) {
-             //   questionList.add(lineArray[i]);
+
+            while (fileInput.hasNextLine()) {
+                String line = fileInput.nextLine();
+                String[] lineArray = line.split("\\|");
+                questionList.add(lineArray[0]);
+                answerList.add(lineArray[1]);
+                System.out.println(questionList);
+                System.out.println(answerList);
 
             }
-
-
 
             // loop through array
             // add to lists by index
@@ -51,4 +49,3 @@ List<String> list = new ArrayList<>();
 
     }
 
-}
