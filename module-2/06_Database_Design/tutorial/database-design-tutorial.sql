@@ -10,7 +10,15 @@
 -- Step 1: Create the customer table
 **************************************************************************/
 -- Table customer
-
+CREATE TABLE customer(
+	customer_id serial NOT NULL,
+	name varchar(100) NOT NULL,
+	street varchar(100) NULL,
+	city varchar(100) NULL,
+	state_code char(2) NULL,
+	postal_code varchar(10) NULL,
+	CONSTRAINT PK_customer PRIMARY KEY (customer_id)
+);
 
 
 
@@ -49,17 +57,17 @@
 /**************************************************************************
 -- Step 1a: Insert test data into the customer table and select it back out.
 **************************************************************************/
--- INSERT INTO customer (name, street, city, state_code, postal_code) VALUES
--- 	('Alfred Hitchcock', '10957 Bellagio Road', 'Bel Air', 'CA', '10957'),
--- 	('Beyonce', '1505 Hadley Street', 'Houston', 'TX', '77002'),
--- 	('Cheryl Hines', '210 Dowd Rd', 'Carthage', 'NC', '28327'),
--- 	('Justin Bieber', '350 5th Ave', 'New York', 'NY', '10118-0110'),
--- 	('Kurt Cobain', '171 Lake Washington Blvd E', 'Seattle', 'WA', '98112'),
--- 	('Lucille Ball', '1000 N Roxbury Dr', 'Beverly Hills', 'CA', '90210'),
--- 	('Michael Jackson', '5225 Figueroa Mountain Road', 'Los Olivos', 'CA', '93441'),
--- 	('Pablo Picasso', '7 Rue des Grands Augustins', 'Paris', 'FR', '75006'),
--- 	('Paul McCartney', '41 West 54th Street', 'New York', 'NY', '10019-5404');
--- SELECT * FROM customer;
+INSERT INTO customer (name, street, city, state_code, postal_code) VALUES
+	('Alfred Hitchcock', '10957 Bellagio Road', 'Bel Air', 'CA', '10957'),
+	('Beyonce', '1505 Hadley Street', 'Houston', 'TX', '77002'),
+	('Cheryl Hines', '210 Dowd Rd', 'Carthage', 'NC', '28327'),
+	('Justin Bieber', '350 5th Ave', 'New York', 'NY', '10118-0110'),
+	('Kurt Cobain', '171 Lake Washington Blvd E', 'Seattle', 'WA', '98112'),
+	('Lucille Ball', '1000 N Roxbury Dr', 'Beverly Hills', 'CA', '90210'),
+	('Michael Jackson', '5225 Figueroa Mountain Road', 'Los Olivos', 'CA', '93441'),
+	('Pablo Picasso', '7 Rue des Grands Augustins', 'Paris', 'FR', '75006'),
+	('Paul McCartney', '41 West 54th Street', 'New York', 'NY', '10019-5404');
+SELECT * FROM customer;
 
 
 /**************************************************************************

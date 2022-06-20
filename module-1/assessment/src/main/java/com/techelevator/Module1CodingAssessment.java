@@ -16,7 +16,7 @@ public class Module1CodingAssessment {
 //		System.out.println(car.toString());
 
         File file = new File("C:\\Users\\Student\\workspace\\michael-felger-student-code\\module-1\\assessment\\CarInput.csv");
-        List<String> carList = new ArrayList<>();
+        List<Car> carList = new ArrayList<>();
         try (Scanner carDataInput = new Scanner(file)) {
             while (carDataInput.hasNextLine()) {
                 String itemLine = carDataInput.nextLine();
@@ -24,7 +24,7 @@ public class Module1CodingAssessment {
                 int carYear = Integer.parseInt(carArray[0]);
                 String carMake = carArray[1];
                 boolean carClassic = Boolean.parseBoolean(carArray[2]);
-                carList.add (carYear, carMake, carClassic); // problem with boolean
+                carList.add(new Car(carYear, carMake, carClassic)); // problem with boolean
             }
 
         } catch (FileNotFoundException fnf) {
