@@ -15,7 +15,7 @@ public class JdbcParkDao implements ParkDao {
 
     public JdbcParkDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+    }  // this is how all of our methods have a way to talk to database and pass in SQL
 
     @Override
     public Park getPark(int parkId) {
@@ -65,6 +65,23 @@ public class JdbcParkDao implements ParkDao {
         return parks;
     }
 
+    @Override  //  Example of ILIKE search
+    public List<Park> searchParksByName (String name) {
+        String searchPark =
+                "SELECT * FROM park WHERE park_name ILIKE ? ORDER BY park_name;";
+
+        String wildcardedSearch = "%" + name + "%";
+        // normally would not use * or park_name, would bind
+        List<Park> parks = new ArrayList<>();
+
+        SqlRowSet parksRowSet = jdbcTemplate.queryForRowSet(searchPark, wildcardedSearch);
+
+        while (parksRowSet.next()) {
+            Park park = mapRowToPark(parksRowSet);
+            parks.add(park);
+        } return parks;
+    }
+
     @Override
     public Park createPark(Park park) {
         String createPark =
@@ -82,7 +99,13 @@ public class JdbcParkDao implements ParkDao {
 
     @Override
     public void updatePark(Park park) {
-
+        String updatePark =
+                "UPDATE park SET park_name = ?, date_established = ?," +
+                        " area = ?, has_camping = ? WHERE park_id = ?;";
+        int numUpdated = jdbcTemplate.update(updatePark, park.getParkName(), park.getDateEstablished(), park.getArea(), park.getHasCamping(), park.getParkId());
+        if (numUpdated == 0) {
+            System.err.println("couldn't update" + park.getParkId());
+        }
     }
 
     @Override

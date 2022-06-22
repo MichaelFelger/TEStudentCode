@@ -32,25 +32,56 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
 	@Override
 	public List<Employee> searchEmployeesByName(String firstNameSearch, String lastNameSearch) {
-		return List.of(new Employee());
+		List<Employee> employees = new ArrayList<>();
+		String sql = "SELECT employee_id, department_id, first_name, last_name, birth_date, hire_date  " +
+				" FROM employee WHERE first_name ILIKE ? AND last_name ILIKE ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, "%"+firstNameSearch+"%", "%"+lastNameSearch+"%");
+		while (results.next()) {
+			employees.add(mapRowToEmployee(results));
+		}
+		return employees;
 	}
 
 	@Override
 	public List<Employee> getEmployeesByProjectId(int projectId) {
-		return new ArrayList<>();
+		List<Employee> employees = new ArrayList<>();
+		String sql = ("SELECT employee.employee_id, employee.department_id, first_name, last_name, birth_date, hire_date" +
+				" FROM employee	" +
+				" JOIN project_employee ON employee.employee_id = project_employee.employee_id " +
+				" JOIN project ON project_employee.project_id = project.project_id  " +
+				" WHERE  project.project_id = ? ");
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, projectId);
+		while (results.next()) {
+			employees.add(mapRowToEmployee(results));
+		}
+		return employees;
 	}
 
 	@Override
 	public void addEmployeeToProject(int projectId, int employeeId) {
+		String sql = "INSERT INTO project_employee (project_id, employee_id) " +
+				" VALUES (?, ?)";
+		int addEmployee = jdbcTemplate.update(sql, projectId, employeeId);
 	}
 
 	@Override
 	public void removeEmployeeFromProject(int projectId, int employeeId) {
+		String sql = "DELETE FROM project_employee WHERE project_id = ? AND employee_id = ?";
+		int addEmployee = jdbcTemplate.update(sql, projectId, employeeId);
 	}
 
 	@Override
 	public List<Employee> getEmployeesWithoutProjects() {
-		return new ArrayList<>();
+		List<Employee> employees = new ArrayList<>();
+		String sql = ("SELECT employee.employee_id, employee.department_id, first_name, last_name, birth_date, hire_date" +
+				" FROM employee	" +
+				" LEFT OUTER JOIN project_employee ON employee.employee_id = project_employee.employee_id " +
+				" WHERE project_id IS NULL ");
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			employees.add(mapRowToEmployee(results));
+		}
+		return employees;
 	}
 	private Employee mapRowToEmployee(SqlRowSet rowSet) {
 		Employee employee = new Employee();
