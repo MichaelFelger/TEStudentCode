@@ -36,6 +36,7 @@ public class USCitiesAndParksCLI {
     }
 
     private void run() {
+        searchForParks("north");
         displayBanner();
         boolean running = true;
         while (running) {
@@ -354,5 +355,11 @@ public class USCitiesAndParksCLI {
         return park;
     }
 
+    private void searchForParks(String searchStr) {
+        List<Park> parks = parkDao.searchParksByName(searchStr);
+        for (Park park : parks) {
+            System.out.println(park);
+        }
+    }
 
 }

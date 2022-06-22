@@ -27,29 +27,30 @@ public class JdbcParkDao implements ParkDao {
         String selectPark = "SELECT park_id, park_name, date_established, area, has_camping FROM park WHERE park_id = ?";
         SqlRowSet parkRowSet = jdbcTemplate.queryForRowSet(selectPark, parkId);
         if (parkRowSet.next()) {
-            Park park = new Park();
-
-            park.setParkId(parkRowSet.getInt("park_id"));
-            park.setParkName(parkRowSet.getString("park_name"));
-
-            if (parkRowSet.getDate("date_established") != null) {
-                park.setDateEstablished(parkRowSet.getDate("date_established").toLocalDate());
-            }
-            else {
-                park.setDateEstablished(null);
-            }
-
-            park.setDateEstablished(parkRowSet.getDate("date_established") == null
-                                        ? null
-                                        : parkRowSet.getDate("date_established").toLocalDate());
-
-            Date dateEst = parkRowSet.getDate("date_esablished");
-            park.setDateEstablished(dateEst == null ? null : dateEst.toLocalDate());
-
-            park.setArea(parkRowSet.getDouble("area"));
-            park.setHasCamping(parkRowSet.getBoolean("has_camping"));
-
-            return park;
+            return mapRowToPark(parkRowSet);
+//            Park park = new Park();
+//
+//            park.setParkId(parkRowSet.getInt("park_id"));
+//            park.setParkName(parkRowSet.getString("park_name"));
+//
+//            if (parkRowSet.getDate("date_established") != null) {
+//                park.setDateEstablished(parkRowSet.getDate("date_established").toLocalDate());
+//            }
+//            else {
+//                park.setDateEstablished(null);
+//            }
+//
+//            park.setDateEstablished(parkRowSet.getDate("date_established") == null
+//                                        ? null
+//                                        : parkRowSet.getDate("date_established").toLocalDate());
+//
+//            Date dateEst = parkRowSet.getDate("date_esablished");
+//            park.setDateEstablished(dateEst == null ? null : dateEst.toLocalDate());
+//
+//            park.setArea(parkRowSet.getDouble("area"));
+//            park.setHasCamping(parkRowSet.getBoolean("has_camping"));
+//
+//            return park;
         } else {
             return null;
         }
@@ -76,6 +77,25 @@ public class JdbcParkDao implements ParkDao {
     }
 
     @Override
+    public List<Park> searchParksByName(String name) {
+        String searchPark =
+                "SELECT * FROM park WHERE park_name ILIKE ? ORDER BY park_name";
+
+        String wildcardedSearch = "%" + name + "%";
+
+        List<Park> parks = new ArrayList<>();
+
+        SqlRowSet parksRowSet = jdbcTemplate.queryForRowSet(searchPark, wildcardedSearch);
+
+        while (parksRowSet.next()) {
+            Park park = mapRowToPark(parksRowSet);
+            parks.add(park);
+        }
+
+        return parks;
+    }
+
+    @Override
     public Park createPark(Park park) {
         String createPark =
                 "INSERT INTO park(park_name, date_established, area, has_camping)" +
@@ -93,7 +113,13 @@ public class JdbcParkDao implements ParkDao {
 
     @Override
     public void updatePark(Park park) {
-
+        String updatePark =
+                "UPDATE park SET park_name = ?, date_established = ?, area = ?, has_camping = ?" +
+                        " WHERE park_id = ?;";
+        int numUpdated = jdbcTemplate.update(updatePark, park.getParkName(), park.getDateEstablished(), park.getArea(), park.getHasCamping(), park.getParkId());
+        if (numUpdated == 0) {
+            System.err.println("Couldn't update park " + park.getParkId());
+        }
     }
 
     @Override
