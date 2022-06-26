@@ -1,43 +1,43 @@
 Bug 1
 -----
-Test that demonstrates problem:
+Test that demonstrates problem: getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee
 
-Expected output:
+Expected output: list size 2
 
-Actual output:
+Actual output: list size 1
 
-How did you fix this bug?
+How did you fix this bug? replaced if statement with while loop to iterate entire list correctly
 
 
 Bug 2
 -----
-Test that demonstrates problem:
+Test that demonstrates problem: getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project
 
-Expected output:
+Expected output: 3
 
-Actual output:
+Actual output: 2
 
-How did you fix this bug?
+How did you fix this bug? WHERE employee_id = ? corrected to WHERE project_id = ?
 
 
 Bug 3
 -----
-Test that demonstrates problem:
+Test that demonstrates problem: updated_timesheet_has_expected_values_when_retrieved
 
-Expected output:
+Expected output: false
 
-Actual output:
+Actual output: true
 
-How did you fix this bug?
+How did you fix this bug? billable column added to updateTimesheet method
 
 
 Bug 4
 -----
-Test that demonstrates problem:
+Test that demonstrates problem: getBillableHours_returns_correct_total
 
-Expected output:
+Expected output: 0
 
-Actual output:
+Actual output: 2
 
-How did you fix this bug?
+How did you fix this bug? added billable true requirement in SQL statement
 
