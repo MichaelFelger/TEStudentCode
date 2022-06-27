@@ -3,6 +3,7 @@ package com.techelevator.hotels.services;
 import com.techelevator.hotels.model.Hotel;
 import com.techelevator.hotels.model.Review;
 import com.techelevator.hotels.model.StarWarsMovie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 public class HotelService {
@@ -11,15 +12,24 @@ public class HotelService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public Hotel[] listHotels() {
-        return null;
+        String endpointUrl = API_BASE_URL + "hotels";
+        Hotel[] hotels = restTemplate.getForObject(endpointUrl, Hotel[].class);
+        return hotels;
     }
 
     public Review[] listReviews() {
-        return null;
+        String endpointUrl = API_BASE_URL + "reviews";
+        ResponseEntity<Review[]> response = restTemplate.getForEntity(endpointUrl, Review[].class);
+        // if you want to return a specific response or need to know about more stuff than just the payload
+        // run the code to see it prints 200 first
+        System.out.println(response.getStatusCode());
+
+        return response.getBody();
     }
 
     public Hotel getHotelById(int id) {
-        return null;
+        String endpointUrl = API_BASE_URL + "hotels/" + id;
+        return restTemplate.getForObject(endpointUrl, Hotel.class);
     }
 
     public Review[] getReviewsByHotelId(int hotelID) {
@@ -31,7 +41,7 @@ public class HotelService {
     }
 
     public StarWarsMovie getWithCustomQuery(){
-        return null;
+        return restTemplate.getForObject("https://swapi.dev/api/films/1", StarWarsMovie.class);
     }
 
 }

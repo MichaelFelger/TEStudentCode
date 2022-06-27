@@ -46,7 +46,7 @@ public class ConsoleService {
         System.out.println("Hotels");
         System.out.println("--------------------------------------------");
         for (Hotel hotel : hotels) {
-            System.out.println(hotel.getId() + ": " + hotel.getName());
+            System.out.println(hotel.getId() + ": " + hotel.getName() + " $" + hotel.getCostPerNight());
         }
     }
 

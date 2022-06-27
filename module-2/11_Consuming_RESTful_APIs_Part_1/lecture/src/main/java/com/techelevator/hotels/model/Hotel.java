@@ -7,6 +7,7 @@ public class Hotel {
     private int stars;
     private int roomsAvailable;
     private String coverImage;
+    private int costPerNight;
 
     public int getId() {
         return id;
@@ -26,6 +27,10 @@ public class Hotel {
 
     public String getCoverImage() {
         return coverImage;
+    }
+
+    public int getCostPerNight() {
+        return costPerNight;
     }
 
     @Override
