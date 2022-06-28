@@ -17,18 +17,42 @@ public class AuctionService {
 
 
     public Auction add(Auction newAuction) {
-        // place code here
-        return null;
+
+        Auction result = null;
+        try {
+            result = restTemplate.postForObject(API_BASE_URL, makeEntity(newAuction), Auction.class);
+        } catch (ResourceAccessException e) {
+            BasicLogger.log("Error connecting to server. Msg " + e.getMessage());
+        } catch (RestClientResponseException e) {
+            BasicLogger.log("Error response. Status: " + e.getStatusText() + "Msg: " + e.getMessage());
+        }
+        return result;
     }
 
     public boolean update(Auction updatedAuction) {
-        // place code here
-        return false;
+    String endpointUrl = API_BASE_URL + updatedAuction.getId();
+        try {
+            restTemplate.put(endpointUrl, makeEntity(updatedAuction));
+        } catch (ResourceAccessException e) {
+            BasicLogger.log("Error connecting to server. Msg " + e.getMessage());
+            return false;
+        } catch (RestClientResponseException e) {
+            BasicLogger.log("Error response. Status: " + e.getStatusText() + "Msg: " + e.getMessage());
+            return false;
+        } return true;
     }
 
     public boolean delete(int auctionId) {
-        // place code here
-        return false;
+        String endpointUrl = API_BASE_URL + auctionId;
+        try {
+            restTemplate.delete(endpointUrl);
+        } catch (ResourceAccessException e) {
+            BasicLogger.log(("Error connecting to server. Msg. " + e.getMessage()));
+            return false;
+        } catch (RestClientResponseException e) {
+            BasicLogger.log("Error response. Status: " + e.getStatusText() + "Msg: " + e.getMessage());
+            return false;
+        } return true;
     }
 
     public Auction[] getAllAuctions() {
