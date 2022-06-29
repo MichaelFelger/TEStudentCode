@@ -19,7 +19,7 @@ public class MemoryReservationDao implements ReservationDao {
 
     private void init() {
         LocalDate now = LocalDate.now();
-        List<Hotel> hotels = hotelDao.list();
+        List<Hotel> hotels = hotelDao.list(null, null);
         reservations = new ArrayList<>();
 
         reservations.add(new Reservation(getMaxIdPlusOne(), hotels.get(0).getId(), "John Smith", now.toString(),

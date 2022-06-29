@@ -61,7 +61,7 @@ public class LocationController {
 
     @RequestMapping( value = "/locations", method = RequestMethod.POST)
     public Location add(@RequestBody Location location) {
-        if( location != null ) {
+        if (location != null) {
             locations.add(location);
             return location;
         }

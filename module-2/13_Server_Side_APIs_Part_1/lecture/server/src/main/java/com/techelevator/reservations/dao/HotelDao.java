@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface HotelDao {
 
-    List<Hotel> list();
+    List<Hotel> list(String cityName, String stateName);
 
     void create(Hotel hotel);
 
