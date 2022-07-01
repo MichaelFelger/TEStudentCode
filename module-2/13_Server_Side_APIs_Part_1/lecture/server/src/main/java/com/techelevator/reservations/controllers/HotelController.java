@@ -44,7 +44,7 @@ public class HotelController {
      * @return all info for a given hotel
      */
     @RequestMapping(path = "/hotels/{id}", method = RequestMethod.GET) // the {id} here is a place-holder path variable
-    public Hotel get(@PathVariable int id) { // pathvariable annotation - id must line up with above {id}
+    public Hotel get(@PathVariable int id) { // path variable annotation - id must line up with above {id}
         return hotelDao.get(id);
     }
 
@@ -58,6 +58,9 @@ public class HotelController {
         return reservationDao.findByHotel(hotelID);
     }
 
-
+    @RequestMapping(path = "/reservations", method = RequestMethod.POST)
+    public Reservation addReservation(@RequestBody Reservation reservation) {
+        return  reservationDao.create(reservation, reservation.getHotelID());
+    }
 
 }

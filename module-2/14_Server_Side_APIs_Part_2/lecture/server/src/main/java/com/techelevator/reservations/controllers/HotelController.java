@@ -9,6 +9,7 @@ import com.techelevator.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,9 +85,24 @@ public class HotelController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+    public Reservation addReservation(@RequestBody @Valid Reservation reservation, @PathVariable("id") int hotelID)
             throws HotelNotFoundException {
         return reservationDao.create(reservation, hotelID);
+    }
+
+    @PutMapping(path = "/hotels/{hotelID}/reservations/{reservationID}")
+    public Reservation updateReservation(@RequestBody @Valid Reservation reservation, @PathVariable("hotelID") int hotelID,
+                                         @PathVariable("reservationID") int reservationID)
+            throws ReservationNotFoundException, HotelNotFoundException {
+        reservation.setHotelID(hotelID);
+        reservation.setId(reservationID);
+        return reservationDao.update(reservation, reservationID);
+    }
+
+    @DeleteMapping(path = "/hotels/{hotelID}/reservations/{reservationID}")
+    public void deleteReservation(@RequestBody @Valid Reservation reservation, @PathVariable("hotelID") int hotelID,
+                                  @PathVariable("reservationID") int reservationID) throws ReservationNotFoundException {
+        reservationDao.delete(reservationID);  // should also technically  validate hotel and throw hotelNotFoundException
     }
 
     /**

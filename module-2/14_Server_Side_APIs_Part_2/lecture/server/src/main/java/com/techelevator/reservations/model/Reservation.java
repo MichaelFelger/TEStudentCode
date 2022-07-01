@@ -1,12 +1,26 @@
 package com.techelevator.reservations.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
 public class Reservation {
 
     private int id;
+
+    @Positive(message = "hotelID must be positive")
     private int hotelID;
+
+    @NotEmpty(message = "fullName cannot be empty")
     private String fullName;
+
+    @NotBlank(message = "checkinDate cannot be blank")
     private String checkinDate;
+
+    @NotBlank(message = "checkoutDate cannot be blank")
     private String checkoutDate;
+
+    @Min(value = 1, message = "must have a least 1 guest")
+    @Max(value = 5, message = "cannot have more than 5 guests")
     private int guests;
 
     public Reservation(int id, int hotelID, String fullName, String checkinDate, String checkoutDate, int guests) {

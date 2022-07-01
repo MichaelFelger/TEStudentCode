@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Component
 public class MemoryAuctionDao implements AuctionDao {
@@ -71,6 +73,7 @@ public class MemoryAuctionDao implements AuctionDao {
     public Auction update(Auction auction, int id) throws AuctionNotFoundException {
         Auction result = auction;
         boolean finished = false;
+        if (get(id) == null) throw new AuctionNotFoundException();
 
         for (int i = 0; i < auctions.size(); i++) {
             if (auctions.get(i).getId() == id) {
@@ -79,6 +82,7 @@ public class MemoryAuctionDao implements AuctionDao {
                 if( result.getId() == 0 ) {
                     result.setId(id);
                 }
+
                 auctions.set(i, result);
                 finished = true;
                 break;
@@ -94,7 +98,7 @@ public class MemoryAuctionDao implements AuctionDao {
     @Override
     public void delete(int id) throws AuctionNotFoundException {
         boolean found = false;
-        // avoid concurrent modification excepiton using iterator
+        // avoid concurrent modification exception using iterator
         for(Iterator<Auction> iterator = auctions.iterator(); iterator.hasNext(); ) {
             Auction auction = iterator.next();
             if(auction.getId() == id) {
