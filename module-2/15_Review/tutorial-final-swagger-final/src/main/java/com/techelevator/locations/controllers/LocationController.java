@@ -22,7 +22,8 @@ public class LocationController {
     }
 
     @ApiOperation("Returns all of the Locations in the system")
-    @RequestMapping(path = "", method = RequestMethod.GET)
+    //@RequestMapping(path = "", method = RequestMethod.GET)
+    @GetMapping
     public List<Location> list() {
         return dao.list();
     }

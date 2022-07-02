@@ -29,13 +29,6 @@ public class AuctionController {
     public List<Auction> list(@RequestParam(defaultValue = "") String title_like, @RequestParam(defaultValue = "0") double currentBid_lte)
             throws AuctionNotFoundException {
 
-//        if( !title_like.equals("") ) {
-//            return dao.searchByTitle(title_like);
-//        }
-//        if(currentBid_lte > 0) {
-//            return dao.searchByPrice(currentBid_lte);
-//        }
-
         return dao.list();
     }
 
