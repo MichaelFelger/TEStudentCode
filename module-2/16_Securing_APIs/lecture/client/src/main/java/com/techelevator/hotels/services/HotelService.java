@@ -3,34 +3,31 @@ package com.techelevator.hotels.services;
 import com.techelevator.hotels.model.Hotel;
 import com.techelevator.hotels.model.Reservation;
 import com.techelevator.util.BasicLogger;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
-
 
 public class HotelService {
 
     private static final String API_BASE_URL = "http://localhost:8080/";
     private final RestTemplate restTemplate = new RestTemplate();
 
+    private String authToken = null;
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
     /**
      * Create a new reservation in the hotel reservation system
      */
     public Reservation addReservation(Reservation newReservation) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Reservation> entity = new HttpEntity<>(newReservation, headers);
-
         Reservation returnedReservation = null;
-        try {
-           returnedReservation  = restTemplate.postForObject(API_BASE_URL + "reservations", entity, Reservation.class);
-        } catch (RestClientResponseException | ResourceAccessException e) {
-            //BasicLogger logger = new BasicLogger();
-            BasicLogger.log(e.getMessage());
-        }
+
+        //TODO: Add implementation
+        BasicLogger.log("HotelService.addReservation() has not been implemented");
+
         return returnedReservation;
     }
 
@@ -38,13 +35,10 @@ public class HotelService {
      * Updates an existing reservation by replacing the old one with a new reservation
      */
     public boolean updateReservation(Reservation updatedReservation) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Reservation> entity = new HttpEntity<>(updatedReservation, headers);
-
         boolean success = false;
         try {
-            restTemplate.put(API_BASE_URL + "reservations/" + updatedReservation.getId(), entity);
+            restTemplate.put(API_BASE_URL + "reservations/" + updatedReservation.getId(),
+                    makeReservationEntity(updatedReservation));
             success = true;
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
@@ -58,7 +52,8 @@ public class HotelService {
     public boolean deleteReservation(int id) {
         boolean success = false;
         try {
-            restTemplate.delete(API_BASE_URL + "reservations/" + id);
+            restTemplate.exchange(API_BASE_URL + "reservations/" + id, HttpMethod.DELETE,
+                    makeAuthEntity(), Void.class);
             success = true;
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
@@ -66,15 +61,15 @@ public class HotelService {
         return success;
     }
 
-    /* DON'T MODIFY ANY METHODS BELOW */
-
     /**
      * List all hotels in the system
      */
     public Hotel[] listHotels() {
         Hotel[] hotels = null;
         try {
-            hotels = restTemplate.getForObject(API_BASE_URL + "hotels", Hotel[].class);
+            ResponseEntity<Hotel[]> response = restTemplate.exchange(API_BASE_URL + "hotels", HttpMethod.GET,
+                            makeAuthEntity(), Hotel[].class);
+            hotels = response.getBody();
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
@@ -87,7 +82,9 @@ public class HotelService {
     public Reservation[] listReservations() {
         Reservation[] reservations = null;
         try {
-            reservations = restTemplate.getForObject(API_BASE_URL + "reservations", Reservation[].class);
+            ResponseEntity<Reservation[]> response = restTemplate.exchange(API_BASE_URL + "reservations",
+                    HttpMethod.GET, makeAuthEntity(), Reservation[].class);
+            reservations = response.getBody();
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
@@ -100,7 +97,10 @@ public class HotelService {
     public Reservation[] listReservationsByHotel(int hotelId) {
         Reservation[] reservations = null;
         try {
-            reservations = restTemplate.getForObject(API_BASE_URL + "hotels/" + hotelId + "/reservations", Reservation[].class);
+            ResponseEntity<Reservation[]> response =
+                    restTemplate.exchange(API_BASE_URL + "hotels/" + hotelId + "/reservations",
+                            HttpMethod.GET, makeAuthEntity(), Reservation[].class);
+            reservations = response.getBody();
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
@@ -113,11 +113,33 @@ public class HotelService {
     public Reservation getReservation(int reservationId) {
         Reservation reservation = null;
         try {
-            reservation = restTemplate.getForObject(API_BASE_URL + "reservations/" + reservationId, Reservation.class);
+            ResponseEntity<Reservation> response =
+                    restTemplate.exchange(API_BASE_URL + "reservations/" + reservationId,
+                            HttpMethod.GET, makeAuthEntity(), Reservation.class);
+            reservation = response.getBody();
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
         return reservation;
+    }
+
+    /**
+     * Creates a new HttpEntity with the `Authorization: Bearer:` header and a reservation request body
+     */
+    private HttpEntity<Reservation> makeReservationEntity(Reservation reservation) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(authToken);
+        return new HttpEntity<>(reservation, headers);
+    }
+
+    /**
+     * Returns an HttpEntity with the `Authorization: Bearer:` header
+     */
+    private HttpEntity<Void> makeAuthEntity() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(authToken);
+        return new HttpEntity<>(headers);
     }
 
 }
