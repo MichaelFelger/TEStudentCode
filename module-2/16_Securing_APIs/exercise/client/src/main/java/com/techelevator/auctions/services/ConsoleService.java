@@ -1,6 +1,6 @@
 package com.techelevator.auctions.services;
 
-import com.techelevator.auctions.model.Auction;
+import com.techelevator.auctions.services.model.Auction;
 
 import java.util.Scanner;
 

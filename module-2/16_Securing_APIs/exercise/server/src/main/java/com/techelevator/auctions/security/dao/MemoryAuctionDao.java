@@ -1,4 +1,4 @@
-package com.techelevator.auctions.dao;
+package com.techelevator.auctions.security.dao;
 
 import com.techelevator.auctions.exception.AuctionNotFoundException;
 import com.techelevator.auctions.model.Auction;

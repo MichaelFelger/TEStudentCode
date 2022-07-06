@@ -5,6 +5,7 @@ import com.techelevator.hotels.model.Reservation;
 import com.techelevator.util.BasicLogger;
 import org.springframework.http.*;
 import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,13 +20,22 @@ public class HotelService {
         this.authToken = authToken;
     }
 
+    //check lecture final for other options
+
+
     /**
      * Create a new reservation in the hotel reservation system
      */
     public Reservation addReservation(Reservation newReservation) {
         Reservation returnedReservation = null;
+        try {
+            ResponseEntity<Reservation> response = restTemplate.exchange(API_BASE_URL + "reservations",
+                    HttpMethod.POST, makeReservationEntity(newReservation), Reservation.class);
+            returnedReservation = response.getBody();
+        } catch (RestClientException rce) {
+            BasicLogger.log(rce.getMessage());
+        }
 
-        //TODO: Add implementation
         BasicLogger.log("HotelService.addReservation() has not been implemented");
 
         return returnedReservation;

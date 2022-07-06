@@ -1,6 +1,6 @@
 package com.techelevator.auctions;
 
-import com.techelevator.auctions.model.Auction;
+import com.techelevator.auctions.services.model.Auction;
 import com.techelevator.auctions.services.AuctionService;
 import com.techelevator.auctions.services.AuthenticationService;
 import com.techelevator.auctions.services.ConsoleService;

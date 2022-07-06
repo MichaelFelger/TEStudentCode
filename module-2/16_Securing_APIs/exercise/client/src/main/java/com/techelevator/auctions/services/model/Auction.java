@@ -1,4 +1,4 @@
-package com.techelevator.auctions.model;
+package com.techelevator.auctions.services.model;
 
 public class Auction {
 
