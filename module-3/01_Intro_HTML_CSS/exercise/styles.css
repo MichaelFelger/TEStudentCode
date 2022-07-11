@@ -1,0 +1,33 @@
+header {
+    text-align: center;
+}
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgba(128, 128, 128, 0.157);
+    text-align: center;
+}
+form {
+    background-color: rgba(128, 128, 128, 0.157);
+}
+
+img {
+    width: 400px;
+    
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+table {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+figure {
+    font-style: italic;
+}
+
+figcaption {
+    font-weight: bold;
+}
