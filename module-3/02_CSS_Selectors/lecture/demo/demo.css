@@ -1,0 +1,40 @@
+/* lots more to see in lecture final */
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    background-color: lightgray;
+}
+
+.special {
+    background-color: lightskyblue;
+}
+
+.middle.special {
+    font-weight: bold;
+}
+
+#first-section {
+    color: magenta;
+}
+
+section.special {
+    background-color: yellow;
+}
+
+img[alt] {
+    background-color: orange;
+}
+#product-list li {
+    font-style: italic;
+}
+
+li + li {
+    border-top: 1px solid purple;
+}
+
+#product-list:first-child {
+    background-color: lime;
+}

@@ -75,3 +75,6 @@ a[target=_blank]:hover {
   border-radius: 0 30px 30px 0;
   color: blue;
 }
+.active-left-menu {
+  background-color: rgba(135, 206, 250, 0.5);
+}
