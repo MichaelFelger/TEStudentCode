@@ -1,3 +1,37 @@
+header {
+    grid-area: ga-header;
+}
+
+#menu-nav {
+    grid-area: ga-menu;
+}
+
+main {
+    grid-area: ga-main;
+}
+
+#upcoming-events {
+    grid-area: ga-events;
+}
+
+footer {
+    grid-area: ga-feet;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: 
+        "ga-header  ga-header   ga-header"
+        "ga-menu    ga-main     ga-events"
+        "ga-feet    ga-feet     ga-feet"
+        ;
+        gap: 10px;
+}
+
+@media screen {
+    
+}
 
 
 

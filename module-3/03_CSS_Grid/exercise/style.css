@@ -50,3 +50,132 @@ header img {
 #student-picture img{
     border-radius: 50%;
 }
+
+header {
+    grid-area: ga-header;
+}
+
+#headline {
+    grid-area: ga-student-name;
+}
+
+#student-picture {
+    grid-area: ga-student-picture;
+    text-align: center;
+}
+
+
+#student-quote {
+    grid-area: ga-student-quote;
+}
+
+#student-profile {
+    grid-area: ga-student-profile;
+}
+
+#student-contact {
+    grid-area: ga-student-contact;
+    text-align: center;
+}
+
+#experience-grid {
+    
+    grid-area: ga-experience-grid;
+}
+
+#experience-code {
+    grid-area: ga-experience-code;
+}
+
+#experience-database {
+    grid-area: ga-experience-database;
+}
+
+#experience-web {
+    grid-area: ga-experience-web;
+}
+
+#experience-design {
+    grid-area: ga-experience-design;
+}
+
+footer {
+    grid-area: ga-footer;
+}
+
+
+#main-grid {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "ga-student-name        ga-student-name     ga-student-picture"
+        "ga-student-quote       ga-student-quote    ga-student-picture"
+        "ga-student-profile     ga-student-profile  ga-student-contact"
+        "ga-experience-grid     ga-experience-grid  ga-experience-grid"
+        ;
+        row-gap: 20px;
+        column-gap: 50px
+}
+
+#experience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "ga-experience-code     ga-experience-code"
+        "ga-experience-database ga-experience-database"
+        "ga-experience-web      ga-experience-design"
+        ;
+        row-gap: 20px;
+        column-gap: 50px
+}
+
+@media screen and (max-width: 1024px) {
+    #main-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "ga-student-name        ga-student-name"
+        "ga-student-quote       ga-student-picture"
+        "ga-student-quote       ga-student-contact"
+        "ga-student-profile     ga-student-profile"
+        "ga-experience-grid      ga-experience-grid"
+
+    ;
+    row-gap: 20px;
+    column-gap: 35px
+    }
+    #experience-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "ga-experience-code     ga-experience-web"
+        
+            "ga-experience-database ga-experience-design"
+            ;
+            row-gap: 20px;
+            column-gap: 20px
+    }
+}
+@media screen and (max-width: 450px) {
+    #main-grid{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "ga-student-name"
+        "ga-student-picture"
+        "ga-student-contact"
+        "ga-student-quote"
+        "ga-student-profile"
+        "ga-experience-grid"
+        ;
+    }
+    #experience-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "ga-experience-code"
+            "ga-experience-web"
+            "ga-experience-database"
+            "ga-experience-design"
+            ;
+        
+    }
+
+}
