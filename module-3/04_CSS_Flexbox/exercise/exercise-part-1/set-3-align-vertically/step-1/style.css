@@ -15,3 +15,8 @@ body {
   color: #fff;
   border: solid 1px #777;
 }
+body div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

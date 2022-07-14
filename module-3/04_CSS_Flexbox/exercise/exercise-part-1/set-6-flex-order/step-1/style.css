@@ -16,3 +16,12 @@ body {
   border-radius: 999px;
   margin: 0 10px;
 }
+
+.bio {
+  display: flex;
+  align-items: center;
+}
+
+.bio:nth-child(even){
+  flex-direction: row-reverse;
+ } 
