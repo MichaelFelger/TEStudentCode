@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Information</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Sign up to hear news about Neal's new books</h1>
+    </header>
+    <main>
+        <h2>Newsletter Signup</h2>
+        <nav>
+            <a href="index.html">Return to Main Page</a>
+        </nav>
+        <form action="api/newsletter" method="post">
+            <div>
+                <label for="name">Fan Name: </label>
+                <input id="name" name="name" type="text" required>
+            </div>
+            <div>
+                <label for="email">Fan Email: </label>
+                <input id="email" name="email" type="email" required>
+            </div>
+            <div>
+                <label for="date-of-birth">Date of Birth: </label>
+                <input id="date-of-birth" name="date-of-birth" type="date">
+            </div>
+            <div>
+                <label for="favorite-color">Favorite Color: </label>
+                <input id="favorite-color" name="favorite-color" type="color">
+            </div>
+            <div>
+                <label for="lucky-number">Lucky Number: </label>
+                <input id="lucky-number" name="lucky-number" type="number">
+            </div>
+            <div>
+                <label for="confirmation">Confirmation: </label>
+                <input id="confirmation" name="confirmation" type="checkbox">
+            </div>
+            <button type="submit">Submit</button>
+
+        </form>
+    </main>
+
+
+</body>
+
+</html>
