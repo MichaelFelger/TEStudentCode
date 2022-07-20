@@ -25,7 +25,7 @@ function isAdmitted(gpa, satScore = 0, recommendation = false) {
     } else return false;
 }
 /**
- * Write a function called useParameterToFilterArray that takes an anonymous
+ * Write a function called useParameterToFilterArray that takes a
  * function and uses that in the `unfilteredArray` filter function. Return the result.
  *
  * @param {function} filterFunction the function to filter with
@@ -129,6 +129,11 @@ function getFullAddressesOfProperties(objectArray) {
  * @param {number[]|string[]} searchArray the array to search
  * @returns {number|string} the number or string that is largest
  **/
+/**
+ * Finds the largest element in an array by lexographic value.
+ * @param {number[]|string[]} searchArray 
+ * @returns {number|string} the number or string that is largest
+ */
 function findLargest(searchArray) {
     temp = '';
     searchArray.forEach((element) => {
@@ -156,6 +161,12 @@ function findLargest(searchArray) {
  * calls with two anonymous functions.
  *
  * Read the tests to verify you have the correct behavior.
+ */
+/**
+ * Take an array of arrays, adds up all sub values, and returns
+ * the sum.
+ * @param {number[]} arrayOfArrays 
+ * @returns {number} sum of all elements
  */
 function getSumOfSubArrayValues(arrayOfArrays) {
     if ((arrayOfArrays == undefined) || (arrayOfArrays.length === 0)) { return 0 }
