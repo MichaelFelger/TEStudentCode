@@ -11,19 +11,19 @@ function performOperation() {
   const current = parseNumber(display.value);
   previous = parseNumber(previous);
 
-  switch(operator) {
-    case '+' :
+  switch (operator) {
+    case '+':
       result = previous + current;
-    break;
-    case '-' :
-        result = previous - current;
-    break;
-    case '*' :
-        result = previous * current;
-    break;
-    case '/' :
-        result = previous / current;
-    break;
+      break;
+    case '-':
+      result = previous - current;
+      break;
+    case '*':
+      result = previous * current;
+      break;
+    case '/':
+      result = previous / current;
+      break;
   }
 
   display.value = result;
@@ -55,7 +55,7 @@ function clickOperator(event) {
 function clickNumber(event) {
   const val = event.target.value;
 
-  if( operatorClicked ) {
+  if (operatorClicked) {
     display.value = val;
     operatorClicked = false;
   } else {
@@ -72,28 +72,57 @@ function clear() {
 }
 
 // add event listener for when the DOM is loaded
-document.addEventListener('LOADED_EVENT_GOES_HERE', () => {
+document.addEventListener('DOMContentLoaded', e => {
 
   // set the variable called display equal to the display element
   // HINT: use its id #display to get a reference to it
+
+  display = document.getElementById('display');
 
   // get a reference to all of the numbers
   // loop over each of the numbers
   // add a click event listener to each number to call the function clickNumber
 
+  const nums = document.querySelectorAll('.number');
+  for (const num of nums) {
+    num.addEventListener('click', e => {
+      clickNumber(e);
+    });
+  }
+
   // get a reference to the decimal point button
   // add a click event listener to call the function clickNumber
   // the decimal point is part of the number so append it
 
+  const deciButton = document.querySelector('.decimal');
+  deciButton.addEventListener('click', e => {
+    clickNumber(e);
+  });
+
   // get a reference to the all clear button
-  // add a click event listener to call the function clear  
+  // add a click event listener to call the function clear 
+
+  const clearButton = document.querySelector('.all-clear');
+  clearButton.addEventListener('click', e => {
+    clear(e);
+  });
 
   // get a reference to all of the operators;
   // loop over each of the operators
   // add a click event listener to each operator to call the function clickOperator
+  const ops = document.querySelectorAll('.operator');
+  for (const op of ops) {
+    op.addEventListener('click', e => {
+      clickOperator(e);
+    });
+  }
 
   // add click event listener for the equal sign
   // should call the function performOperation
+  const eql = document.querySelector('.equal-sign');
+  eql.addEventListener('click', () => {
+    performOperation();
+  });
 
 });
 

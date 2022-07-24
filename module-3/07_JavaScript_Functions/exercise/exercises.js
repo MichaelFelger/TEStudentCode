@@ -172,8 +172,13 @@ function getSumOfSubArrayValues(arrayOfArrays) {
     if ((arrayOfArrays == undefined) || (arrayOfArrays.length === 0)) { return 0 }
     return arrayOfArrays.reduce(function (a, b) {
         return a.concat(b);
-    }).
-        reduce(function (a, b) {
+    })
+        .reduce(function (a, b) {
             return a + b;
         });
 }
+
+// other solution: 
+//                  if (!sparseArray) return 0;  this is falsy bc it's an empty array
+//                  const sumArray = (arr) => arr.reduce((acc, el) => acc += el, 0);
+//                      return arrayOfArrays.reduce((acc, arr) => acc += sumArray(arr), 0);

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 id="copy"></h2>
+    <input type="text" id="source">
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+
+    <script>
+        const copy = document.getElementById('copy');
+        const source = document.getElementById('source');
+
+        source.addEventListener('keyup', (event) => {
+            copy.innerText = source.value;
+        });
+
+        const ul = document.querySelector('ul');
+        ul.addEventListener('click', (e) => { // see lecture final to see how to not select everything under ul
+            copy.innerText = e.target.innerText
+        });
+    </script>
+</body>
+
+</html>

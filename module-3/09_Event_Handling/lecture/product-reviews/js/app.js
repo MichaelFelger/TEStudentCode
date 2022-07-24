@@ -9,7 +9,6 @@ let reviews = [
         rating: 3
     }
 ];
-
 /**
  * Add product name to the page title.
  */
@@ -17,14 +16,12 @@ function setPageTitle() {
     const pageTitle = document.getElementById('page-title');
     pageTitle.querySelector('.name').innerText = bookName;
 }
-
 /**
  * Add product description to the page.
  */
 function setPageDescription() {
     document.querySelector('.description').innerText = description;
 }
-
 /**
  * Display all of the reviews in the reviews array.
  */
@@ -37,10 +34,9 @@ function displayReviews() {
         console.error('Your browser does not support templates');
     }
 }
-
 /**
  * Add single review to the page.
- * 
+ *
  * @param {Object} review The review to display
  */
 function displayReview(review) {
@@ -56,16 +52,48 @@ function displayReview(review) {
     }
     main.appendChild(tmpl);
 }
-
 // LECTURE STARTS HERE ---------------------------------------------------------------
-
-// Set the product reviews page title.
-setPageTitle();
-// Set the product reviews page description.
-setPageDescription();
-// Display all of the product reviews on our page.
-displayReviews();
-
+document.addEventListener('DOMContentLoaded', e => {
+    //will be fired by browser when HTML content has been loaded, when it's
+    //done reading the files
+    console.log('loading...')
+    // Set the product reviews page title.
+    setPageTitle();
+    // Set the product reviews page description.
+    setPageDescription();
+    // Display all of the product reviews on our page.
+    displayReviews();
+    //done in here because then we will know that all events are there
+    setupDescriptionEdit();
+    const toggleFormButton = document.getElementById('btnToggleForm');
+    toggleFormButton.addEventListener('click', e => {
+        showHideForm();
+    });
+    const saveButton = document.getElementById('btnSaveReview');
+    saveButton.addEventListener('click', e => {
+        saveReview();
+        e.preventDefault();
+    });
+});
+function setupDescriptionEdit() {
+    const desc = document.querySelector('.description');
+    desc.addEventListener('click', e => {
+        //call toggleDescriptionEdit with reference to the p tag
+        toggleDescriptionEdit(e.target);
+    });
+    const inputDesc = document.getElementById('inputDesc');
+    inputDesc.addEventListener('keyup', e => {
+        if (e.key === 'Enter') {
+            exitDescriptionEdit(e.target, true);
+        }
+        if (e.key === 'Escape') {
+            exitDescriptionEdit(e.target, false);
+        }
+    });
+    inputDesc.addEventListener('mouseleave', e => {
+        exitDescriptionEdit(e.target, false);
+    });
+}
 /**
  * Hide the description and show the text box.
  *
@@ -78,7 +106,6 @@ function toggleDescriptionEdit(desc) {
     desc.classList.add('d-none');
     textBox.focus();
 }
-
 /**
  * Hide the text box and show the description.
  * If save is true, also set the description to the contents of the text box.
@@ -95,14 +122,12 @@ function exitDescriptionEdit(textBox, save) {
     textBox.classList.add('d-none');
     desc.classList.remove('d-none');
 }
-
 /**
  * Toggle visibility of the add review form.
  */
 function showHideForm() {
     const form = document.querySelector('form');
     const btn = document.getElementById('btnToggleForm');
-
     if (form.classList.contains('d-none')) {
         form.classList.remove('d-none');
         btn.innerText = 'Hide Form';
@@ -113,7 +138,6 @@ function showHideForm() {
         btn.innerText = 'Add Review';
     }
 }
-
 /**
  * Reset all of the values in the form.
  */
@@ -126,8 +150,17 @@ function resetFormValues() {
     document.getElementById('rating').value = 1;
     document.getElementById('review').value = '';
 }
-
 /**
  * Save the review that was added using the add review form.
  */
-function saveReview() { }
+function saveReview() {
+    const review = {
+        reviewer: document.getElementById('name').value,
+        title: document.getElementById('title').value,
+        review: document.getElementById('review').value,
+        rating: document.getElementById('rating').value
+    }
+    reviews.push(review);
+    displayReview(review);
+    showHideForm();
+}

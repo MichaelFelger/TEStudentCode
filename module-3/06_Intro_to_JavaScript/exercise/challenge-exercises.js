@@ -11,7 +11,7 @@
         iqTest("") → 0 // there are no numbers in the given set
         iqTest("2 2 4 6") → 0 // all numbers are even, therefore there is no position of an odd number
 */
-function iqTest(myString) {
+function iqTest(myString) {  // this only works if the different one isn't the first index - you need to look at the last index, as well
     const myArray = myString.split(" ");
     for (let i = 1; i < myArray.length; i++) {
         if ((myArray[i] % 2) != (myArray[i - 1] % 2)) {
