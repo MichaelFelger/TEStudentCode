@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <h2 id="copy"></h2>
+            <input type="text" id="source">
+        </div>
+
+        <script>
+            const copy = document.getElementById('copy');
+            const source = document.getElementById('source');
+
+            source.addEventListener('input', (event) => {
+                copy.innerText = source.value;
+            });
+
+        </script>
+
+    </body>
+
+</html>
