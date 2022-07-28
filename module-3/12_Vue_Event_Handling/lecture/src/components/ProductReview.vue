@@ -5,49 +5,50 @@
     <p class="description">{{ description }}</p>
 
     <div class="well-display">
-      <div class="well">
+      <div class="well" v-on:click="filterRating = 0">
         <span class="amount">{{ averageRating }}</span>
         Average Rating
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filterRating = 1">
         <span class="amount">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? "" : "s" }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filterRating = 2">
         <span class="amount">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? "" : "s" }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filterRating = 3">
         <span class="amount">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? "" : "s" }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filterRating = 4">
         <span class="amount">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? "" : "s" }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filterRating = 5">
         <span class="amount">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? "" : "s" }}
       </div>
     </div>
 
-    <!-- <form>
+    <a href="#" v-on:click="showForm = true" v-show="!showForm">Show form</a>
+    <form v-on:submit.prevent="addReview" v-if="showForm">
       <div class="form-element">
         <label for="reviewer">Name:</label>
-        <input id="reviewer" type="text" />
+        <input id="reviewer" type="text" v-model.trim="newReview.reviewer" />
       </div>
       <div class="form-element">
         <label for="title">Title:</label>
-        <input id="title" type="text" />
+        <input id="title" type="text" v-model.trim="newReview.title" />
       </div>
       <div class="form-element">
         <label for="rating">Rating:</label>
-        <select id="rating">
+        <select id="rating" v-model.number="newReview.rating">
           <option value="1">1 Star</option>
           <option value="2">2 Stars</option>
           <option value="3">3 Stars</option>
@@ -57,16 +58,16 @@
       </div>
       <div class="form-element">
         <label for="review">Review:</label>
-        <textarea id="review"></textarea>
+        <textarea id="review" v-model.trim="newReview.review"></textarea>
       </div>
       <input type="submit" value="Save" />
-      <input type="button" value="Cancel" />
-    </form> -->
+      <input type="button" value="Cancel" v-on:click="resetForm" />
+    </form>
 
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
-      v-for="review in reviews"
+      v-for="review in filteredReviews"
       v-bind:key="review.id"
     >
       <h4>{{ review.reviewer }}</h4>
@@ -100,6 +101,8 @@ export default {
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       newReview: {},
+      showForm: false,
+      filterRating: 0,
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -167,6 +170,20 @@ export default {
       return this.reviews.reduce((currentCount, review) => {
         return currentCount + (review.rating === 5);
       }, 0);
+    },
+    filteredReviews() {
+      if (this.filterRating === 0) return this.reviews;
+      return this.reviews.filter((r) => r.rating === this.filterRating);
+    },
+  },
+  methods: {
+    addReview() {
+      this.reviews.push(this.newReview);
+      this.resetForm();
+    },
+    resetForm() {
+      this.newReview = {};
+      this.showForm = false;
     },
   },
 };

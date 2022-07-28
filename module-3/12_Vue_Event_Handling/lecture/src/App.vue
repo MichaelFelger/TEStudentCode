@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
+    <!-- <binding-demo></binding-demo> -->
     <product-review></product-review>
   </div>
 </template>
 
 <script>
 import ProductReview from "./components/ProductReview.vue";
+// import BindingDemo from "./components/BindingDemo.vue";
 
 export default {
   name: "app",
   components: {
-    ProductReview
-  }
+    ProductReview,
+    // BindingDemo,
+  },
 };
 </script>
 
