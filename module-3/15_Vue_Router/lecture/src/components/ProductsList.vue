@@ -10,7 +10,17 @@
     <tbody>
       <tr v-for="product in $store.state.products" v-bind:key="product.id">
         <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
+        <td>
+          <router-link
+            :to="{ name: 'product-details', params: { id: product.id } }"
+          >
+            {{ product.name }}</router-link
+          >
+          <!-- need to do in homework -->
+          <!-- need to stick the prod name in the link -->
+          <!-- then tell it where to go with the ':to' property -->
+          <!-- use dynamic path with param details -->
+        </td>
         <td>{{ product.reviews.length }}</td>
       </tr>
     </tbody>
@@ -19,7 +29,7 @@
 
 <script>
 export default {
-  name: "products-list"
+  name: "products-list",
 };
 </script>
 

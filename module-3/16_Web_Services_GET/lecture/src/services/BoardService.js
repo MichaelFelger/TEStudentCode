@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const http = axios.create({
+const http = axios.create({ // this is doing the same thing that RestTemplate does
   baseURL: "http://localhost:3000"
 });
 

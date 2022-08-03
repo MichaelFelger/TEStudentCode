@@ -41,8 +41,8 @@ export default {
         title: "",
         rating: 0,
         review: "",
-        favorited: false
-      }
+        favorited: false,
+      },
     };
   },
   methods: {
@@ -50,12 +50,13 @@ export default {
       const productID = this.$route.params.id;
       this.newReview.productID = productID;
       this.$store.commit("ADD_REVIEW", this.newReview);
-      // TODO: send the visitor back to the product page to see the new review
+      this.$router.push({ name: "product-details", params: { id: productID } });
+      // TODO did^^: send the visitor back to the product page to see the new review
     },
     resetForm() {
       this.newReview = {};
-    }
-  }
+    },
+  },
 };
 </script>
 
