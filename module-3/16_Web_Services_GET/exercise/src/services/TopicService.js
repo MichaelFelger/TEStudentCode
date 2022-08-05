@@ -6,12 +6,12 @@ const http = axios.create({
 
 export default {
 
-  list() {
+  getList() {
     return http.get('/topics');
   },
 
   get(id) {
-    return http.get(`/topics/${id}`)
+    return http.get(`/topics/${id}`);
   }
 
 }
