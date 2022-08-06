@@ -39,7 +39,7 @@ export default {
     },
 
     updateBoard(board) {
-        return http.put(`/boards/${board.id}`);
+        return http.put(`/boards/${board.id}`, board);
     }
 
 }

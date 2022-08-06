@@ -1,7 +1,9 @@
 {
   "boards": [
     {
-      "id": 31454
+      "id": 31454,
+      "title": "new title",
+      "backgroundColor": "#35284f"
     },
     {
       "id": 24635,
