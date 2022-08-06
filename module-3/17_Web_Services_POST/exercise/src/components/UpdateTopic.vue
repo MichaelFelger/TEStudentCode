@@ -5,7 +5,9 @@
       <input type="text" v-model="title" />
     </div>
     <div class="actions">
-      <button type="submit" v-on:click="updateTopic()">Save Document</button>
+      <button type="submit" v-on:click.prevent="updateTopic()">
+        Save Document
+      </button>
     </div>
   </form>
 </template>
@@ -18,28 +20,33 @@ export default {
   props: ["topicID"],
   data() {
     return {
-      title: ""
+      title: "",
     };
   },
   methods: {
     updateTopic() {
       const topic = { id: this.topicID, title: this.title };
       // call topic service update method
-    }
+      topicService.update(topic.id, topic).then((response) => {
+        if (response.status === 200) {
+          this.$router.push("/");
+        }
+      });
+    },
   },
   created() {
     topicService
       .get(this.topicID)
-      .then(response => {
+      .then((response) => {
         this.$store.commit("SET_ACTIVE_TOPIC", response.data);
         this.title = response.data.title;
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.response.status == 404) {
-          this.$router.push({name: 'NotFound'});
+          this.$router.push({ name: "NotFound" });
         }
       });
-  }
+  },
 };
 </script>
 

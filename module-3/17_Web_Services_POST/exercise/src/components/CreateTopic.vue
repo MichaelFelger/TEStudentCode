@@ -5,7 +5,9 @@
       <input type="text" v-model="topic.title" />
     </div>
     <div class="actions">
-      <button type="submit" v-on:click="saveTopic()">Save Document</button>
+      <button type="submit" v-on:click.prevent="saveTopic()">
+        Save Document
+      </button>
     </div>
   </form>
 </template>
@@ -19,13 +21,24 @@ export default {
     return {
       topic: {
         id: Math.floor(Math.random() * (1000 - 100) + 100),
-        title: ""
-      }
+        title: "",
+      },
     };
   },
   methods: {
-    saveTopic() {}
-  }
+    saveTopic() {
+      topicService
+        .create(this.topic)
+        .then((response) => {
+          if (response.status === 201) {
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
 };
 </script>
 

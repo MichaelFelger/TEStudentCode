@@ -33,7 +33,8 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_MESSAGE(state, data) {
       state.activeMessage = data;
-    },
+    }
+
   },
   actions: {
   },
