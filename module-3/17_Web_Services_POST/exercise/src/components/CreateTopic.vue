@@ -27,16 +27,11 @@ export default {
   },
   methods: {
     saveTopic() {
-      topicService
-        .create(this.topic)
-        .then((response) => {
-          if (response.status === 201) {
-            this.$router.push("/");
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      topicService.create(this.topic).then((response) => {
+        if (response.status === 201) {
+          this.$router.push("/");
+        }
+      });
     },
   },
 };
